@@ -8,13 +8,13 @@ export default function HomePage() {
         The applied, real world side of the same thinking lives at endogenation.com.
       </p>
       <div className="flex flex-col gap-3 sm:flex-row">
-        
+        <a
           href="https://generative.endogenator.com"
           className="rounded-md bg-stone-800 px-4 py-2 text-white hover:bg-stone-900 text-center"
         >
           generative.endogenator.com
         </a>
-        
+        <a
           href="https://endogenation.com"
           className="rounded-md border border-stone-300 px-4 py-2 hover:bg-stone-100 text-center"
         >
