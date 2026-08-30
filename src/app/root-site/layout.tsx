@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootSiteLayout({ children }: { children: ReactNode }) {
+  const year = new Date().getFullYear();
+
   return (
     <div className="origin-theme">
       <header className="border-b border-[var(--site-clay)]/30">
@@ -21,7 +23,6 @@ export default function RootSiteLayout({ children }: { children: ReactNode }) {
           </span>
           <nav className="flex gap-5 text-sm">
             <a href="https://generative.endogenator.com">Generative</a>
-            <a href="https://doctorate.endogenator.com">Doctorate</a>
           </nav>
         </div>
       </header>
@@ -31,8 +32,11 @@ export default function RootSiteLayout({ children }: { children: ReactNode }) {
       <footer className="border-t border-[var(--site-clay)]/30">
         <div className="mx-auto max-w-2xl px-6 py-8 text-sm text-[var(--site-ink-muted)]">
           <p>
-            endogenator.com — a moving target on purpose. Come back and see
+            endogenator.com, a moving target on purpose. Come back and see
             where it&apos;s gone.
+          </p>
+          <p className="mt-2 text-xs">
+            &copy; {year} Brian Davis. All rights reserved.
           </p>
         </div>
       </footer>

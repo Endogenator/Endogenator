@@ -12,6 +12,7 @@ const FRAMEWORK_LINKS = [
   { href: "/frameworks/topology", label: "Topology" },
   { href: "/frameworks/xik-ts", label: "XIK-TS" },
   { href: "/frameworks/etcs", label: "ETCS" },
+  { href: "/frameworks/etcs/education-as-a-system", label: "Education as a System" },
   { href: "/frameworks/belief-space", label: "Belief Space" },
   { href: "/frameworks/correctors-recruiters", label: "Correctors & Recruiters" },
   { href: "/frameworks/integration", label: "Integration" },
@@ -22,6 +23,8 @@ export default function GenerativeSiteLayout({
 }: {
   children: ReactNode;
 }) {
+  const year = new Date().getFullYear();
+
   return (
     <div className="origin-theme">
       <header className="border-b border-[var(--site-clay)]/30">
@@ -55,6 +58,9 @@ export default function GenerativeSiteLayout({
             is actively still being worked out, marked as such throughout
             rather than hidden. Part of the{" "}
             <a href="https://endogenator.com">endogenator.com</a> project.
+          </p>
+          <p className="mt-2 text-xs">
+            &copy; {year} Brian Davis. All rights reserved.
           </p>
         </div>
       </footer>

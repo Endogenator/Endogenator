@@ -1,37 +1,44 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
-const GENERATIVE_HOSTS = new Set(['generative.endogenator.com']);
-const ROOT_HOSTS = new Set(['endogenator.com', 'www.endogenator.com']);
+/**
+ * Two properties now: endogenator.com (root-site) and
+ * generative.endogenator.com (generative-site). doctorate.endogenator.com
+ * and Clerk auth have been fully removed, not just unlinked.
+ */
 
-export default clerkMiddleware((auth, req) => {
-  const hostname = (req.headers.get('host') || '')
-    .split(':')[0]
+const GENERATIVE_HOSTS = new Set(["generative.endogenator.com"]);
+const KNOWN_PREFIXES = ["/root-site", "/generative-site"];
+
+export function middleware(request: NextRequest) {
+  const hostname = (request.headers.get("host") || "")
+    .split(":")[0]
     .toLowerCase();
 
-  const url = req.nextUrl.clone();
+  const url = request.nextUrl.clone();
 
-  let prefix: string | null = null;
-  if (GENERATIVE_HOSTS.has(hostname)) {
-    prefix = '/generative-site';
-  } else if (ROOT_HOSTS.has(hostname)) {
-    prefix = '/root-site';
+  // If the request already targets one of the real site folders directly,
+  // leave it alone. Without this check, a direct request to
+  // /generative-site on a non-generative host would get rewritten a
+  // second time into /root-site/generative-site, which doesn't exist.
+  // This also means either folder can be visited directly by path for
+  // local testing, regardless of hostname.
+  const alreadyRouted = KNOWN_PREFIXES.some(
+    (prefix) => url.pathname === prefix || url.pathname.startsWith(`${prefix}/`)
+  );
+  if (alreadyRouted) {
+    return NextResponse.next();
   }
 
-  if (prefix && !url.pathname.startsWith(prefix)) {
-    url.pathname = `${prefix}${url.pathname === '/' ? '' : url.pathname}`;
-    return NextResponse.rewrite(url);
-  }
+  const prefix = GENERATIVE_HOSTS.has(hostname)
+    ? "/generative-site"
+    : "/root-site";
 
-  // doctorate.endogenator.com, localhost, Vercel preview URLs: untouched.
-  // Falls through to existing routing and the (protected) layout's own
-  // Clerk auth check, exactly as it worked before this change.
-  return NextResponse.next();
-});
+  url.pathname = `${prefix}${url.pathname === "/" ? "" : url.pathname}`;
+  return NextResponse.rewrite(url);
+}
 
 export const config = {
   matcher: [
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)',
+    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
   ],
 };
