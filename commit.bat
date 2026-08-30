@@ -2,10 +2,10 @@
 setlocal
 
 echo --------------------------------------
-echo Doctoral Progress Git Commit
+echo Endogenator Git Commit
 echo --------------------------------------
 
-cd /d K:\doctoral-progress
+cd /d K:\endogenator
 
 :: Safety: remove stale lock if it exists
 if exist .git\index.lock (
