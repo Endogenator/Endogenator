@@ -48,11 +48,6 @@ export default function TopologyPage() {
         >
           Topology: PS, BS, TS, AR
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This page didn&apos;t exist before this round of thinking, and one
-          section below has already been through a real correction. Marked
-          plainly rather than presented as settled from the start.
-        </p>
 
         <div className="space-y-14">
           <Section title="Four domains, one space">

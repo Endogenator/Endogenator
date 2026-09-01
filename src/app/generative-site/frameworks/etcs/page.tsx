@@ -48,13 +48,6 @@ export default function EtcsPage() {
         >
           ETCS
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          The institutional three-stage model this page used to run on is
-          gone, replaced by the crystallization curve from Topology. One
-          section below extends that curve with a mechanism that
-          hasn&apos;t been stated before tonight, marked as a live
-          hypothesis rather than something settled.
-        </p>
 
         <div className="space-y-14">
           <Section title="What ETCS actually covers">

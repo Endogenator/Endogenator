@@ -48,14 +48,6 @@ export default function XikTsPage() {
         >
           XIK-TS
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This page has been through several real revisions in one sitting.
-          The knowledge hierarchy has been restructured around a
-          Belief-to-Knowledge threshold rather than four flat levels.
-          Identity&apos;s role has been corrected away from discrete parts
-          toward a complex-systems reading. Both changes are kept visible
-          below rather than smoothed over.
-        </p>
 
         <div className="space-y-14">
           <Section title="What this page actually covers">

@@ -43,13 +43,6 @@ export default function IntegrationPage() {
         >
           Integration
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This page used to carry real theoretical weight of its own,
-          before Topology absorbed the space-level architecture and
-          Correctors and Recruiters absorbed the mechanism-level content.
-          What&apos;s left is genuinely the seam between five pages that
-          now each stand on their own.
-        </p>
 
         <div className="space-y-14">
           <Section title="The seam, stated plainly">

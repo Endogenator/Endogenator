@@ -41,7 +41,6 @@ export default function RootSitePage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
       <div className="relative">
-        {/* Growth rail: continuous line behind every section marker */}
         <div
           className="growth-rail absolute left-[3px] top-2 hidden w-px md:block"
           style={{ bottom: "2.5rem" }}
@@ -64,9 +63,8 @@ export default function RootSitePage() {
         <div className="space-y-14">
           <Section title="The word">
             <p>
-              I made the word up. Endogenous, from within, and generator. An
-              endogenator is something that generates from the inside rather
-              than waiting on the outside. There&apos;s an O.G. in there too,
+              Endogenous, from within, and generator. An
+              endogenator is something that generates from the inside. There&apos;s an O.G. in there too,
               on purpose, the claim isn&apos;t just generating from within,
               it&apos;s that the thing generated is actually yours, made
               rather than borrowed. And it&apos;s a maker of doing, not just
@@ -75,7 +73,7 @@ export default function RootSitePage() {
             </p>
             <p>
               I first ran into endogenous growth theory in an undergrad
-              economics class, buried in a production model. It answers a
+              economics class, in a lecture on production models. It answers a
               specific puzzle: growth that shows up but can&apos;t be
               explained by more labor or more capital going in. The
               unexplained remainder turns out to be people, learning,
@@ -89,7 +87,7 @@ export default function RootSitePage() {
             <p>
               I used to call myself an entrepreneur. At some point that word
               stopped fitting. Not because what I do changed, but because
-              the word did, it started meaning quick wealth and extraction
+              its connotation did, it started meaning quick wealth and extraction
               more than it meant building something that outlasts you. I
               needed a word that still meant what entrepreneur used to mean
               to me, growth that comes from inside a person, a business, a
@@ -120,15 +118,17 @@ export default function RootSitePage() {
             </p>
             <p>
               I&apos;ve studied a lot of different kinds of systems, and I
-              could never quite land on a fix that would help other people
-              close that gap too, not just me. In conversations with people
-              close to me, I kept drifting toward the same uncomfortable
-              place: that maybe the only real fix was something like
-              starting a new religion, since nothing else seemed to organize
-              belief and action at a scale large enough to make a real
-              difference. It wasn&apos;t a passing thought. It came back
-              more than once, over years, because nothing smaller than that
-              seemed to match the size of what I was actually seeing.
+              could see this gap as a pattern, a flaw in the system of human
+              coordination itself. I could never quite land on a fix that
+              would help other people close that gap too, not just me. In
+              conversations with people close to me, I kept drifting toward
+              the same uncomfortable place: that maybe the only real fix was
+              something like starting a new religion, since nothing else
+              seemed to organize belief and action at a scale large enough
+              to make a real difference. It wasn&apos;t a passing thought.
+              It came back more than once, over years, because nothing
+              smaller than that seemed to match the size of what I was
+              actually seeing.
             </p>
             <p>
               That impulse wasn&apos;t wrong about the scale of the problem.
@@ -181,15 +181,6 @@ export default function RootSitePage() {
               actively moving, lives at{" "}
               <a href="https://generative.endogenator.com">
                 generative.endogenator.com
-              </a>
-              .
-            </p>
-            <p>
-              My doctoral work, on accreditation in higher education, is its
-              own thing, built for a specific institutional purpose, and
-              lives at{" "}
-              <a href="https://doctorate.endogenator.com">
-                doctorate.endogenator.com
               </a>
               .
             </p>

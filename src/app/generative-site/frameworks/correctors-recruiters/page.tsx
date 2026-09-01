@@ -48,14 +48,6 @@ export default function CorrectorsRecruitersPage() {
         >
           Correctors and Recruiters
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This page carried real unresolved debt from Topology, XIK-TS,
-          ETCS, and Belief Space, all four pointed here for answers they
-          didn&apos;t give. What follows resolves most of it. One piece,
-          what actually produces the permeability-crystallization
-          correlation, gets a real mechanism here for the first time, not a
-          placeholder.
-        </p>
 
         <div className="space-y-14">
           <Section title="Recruiters">

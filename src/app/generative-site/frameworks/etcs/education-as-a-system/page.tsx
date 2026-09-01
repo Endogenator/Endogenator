@@ -43,11 +43,6 @@ export default function EducationAsASystemPage() {
         >
           Education as a System
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This is ETCS&apos;s formal case, the institutional side of belief
-          and identity formation, worked through with accreditation as the
-          specific example.
-        </p>
 
         <div className="space-y-14">
           <Section title="The argument">

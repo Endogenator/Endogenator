@@ -48,12 +48,6 @@ export default function BeliefSpacePage() {
         >
           Belief Space
         </h1>
-        <p className="mb-14 pl-8 text-sm italic text-[var(--site-clay)] md:pl-10">
-          This page draws on real, specific mechanisms rather than
-          restating Topology&apos;s definition. Where it connects to the
-          knowledge illusion and to rhetoric, those connections are stated
-          directly, not softened.
-        </p>
 
         <div className="space-y-14">
           <Section title="What this page actually covers">
