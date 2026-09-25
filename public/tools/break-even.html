@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Break-Even Under Uncertainty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rust:#a8451f; --clay:#8a5a3f; --sand:#f2e8d8; --cream:#fdf5ea; --ink:#2c2210;
+  --slate:#35606a; --line:#dccdb5; --muted:#6e5a44; --bg:var(--sand); --card:var(--cream);
+  --req:rgba(168,69,31,.22); --exp:rgba(53,96,106,.22);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --rust:#e07a4f; --clay:#c49a7c; --ink:#f2e8d8; --slate:#7fb3bd; --line:#4a3d2c; --muted:#bfa98d;
+  --bg:#1f1a12; --card:#2a2319; --req:rgba(224,122,79,.25); --exp:rgba(127,179,189,.25);
+}}
+:root[data-theme="dark"]{
+  --rust:#e07a4f; --clay:#c49a7c; --ink:#f2e8d8; --slate:#7fb3bd; --line:#4a3d2c; --muted:#bfa98d;
+  --bg:#1f1a12; --card:#2a2319; --req:rgba(224,122,79,.25); --exp:rgba(127,179,189,.25);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.1;margin:0 0 .4rem}
+h2{font-size:1.3rem;margin:0 0 .5rem}
+h3{font-size:1.05rem;margin:0 0 .35rem}
+p{margin:.3rem 0 .7rem}
+a{color:var(--rust)}
+.wrap{max-width:1180px;margin:0 auto;padding:1.5rem 1.2rem 3rem}
+header .lede{max-width:62ch;color:var(--muted);font-size:1.08rem}
+.modes{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 .4rem}
+.mode{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:.55rem .9rem;text-align:left;cursor:pointer;font:inherit;min-width:12rem}
+.mode b{display:block;font-weight:600}
+.mode span{font-size:.9rem;color:var(--muted)}
+.mode[aria-pressed="true"]{border-color:var(--rust);box-shadow:inset 0 0 0 1px var(--rust)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2.5px solid var(--slate);outline-offset:2px}
+.key{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.4rem 1.2rem;font-size:.93rem;color:var(--muted);margin:.6rem 0 1.4rem;max-width:62rem}
+.key div{padding-left:.7rem;border-left:3px solid var(--line)}
+.key .k{border-color:var(--ink)} .key .r{border-color:var(--slate)} .key .u{border-left-style:dashed;border-color:var(--rust)}
+.key b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:1.4rem;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}.results{order:-1}}
+@media (max-width:600px){.axis{font-size:19px}.lab{font-size:19px}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.1rem .8rem}
+.inputs .panel+.panel{margin-top:1rem}
+.results{display:flex;flex-direction:column;gap:1rem}
+@media (min-width:901px){.results{position:sticky;top:calc(env(safe-area-inset-top,0px) + .8rem)}}
+.blurb{color:var(--muted);font-size:.95rem;margin-top:-.2rem}
+.row{padding:.55rem 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.rowtop{display:flex;gap:.5rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.rowtop label,.rowtop .lbl{font-weight:600;font-size:.97rem}
+.lblin{font:inherit;font-weight:600;border:0;border-bottom:1px dashed var(--line);background:transparent;color:var(--ink);padding:.1rem 0;width:12rem;max-width:100%}
+.tags{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.tags button{font:inherit;font-size:.8rem;border:0;background:transparent;color:var(--muted);padding:.2rem .55rem;cursor:pointer}
+.tags button+button{border-left:1px solid var(--line)}
+.tags button[aria-pressed="true"][data-t="known"]{background:var(--ink);color:var(--card)}
+.tags button[aria-pressed="true"][data-t="risk"]{background:var(--slate);color:var(--card)}
+.tags button[aria-pressed="true"][data-t="uncertain"]{background:var(--rust);color:var(--card)}
+.fields{display:flex;gap:.6rem;align-items:center;margin-top:.35rem;flex-wrap:wrap}
+.fld{display:flex;align-items:center;gap:.25rem;font-size:.9rem;color:var(--muted)}
+.fld input{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.3rem .45rem;width:6.8rem}
+.row.uncertain .fld input{border-style:dashed;border-color:var(--rust)}
+.row.risk .fld input{border-color:var(--slate)}
+.x{font:inherit;border:0;background:none;color:var(--muted);cursor:pointer;font-size:.85rem;text-decoration:underline}
+.add{font:inherit;margin:.5rem 0 .3rem;border:1px dashed var(--clay);background:transparent;color:var(--clay);border-radius:7px;padding:.3rem .7rem;cursor:pointer}
+.plain .fld input{width:8rem}
+.verdict{font-family:Fraunces,Georgia,serif;font-size:clamp(1.25rem,2.4vw,1.6rem);line-height:1.25;margin:.1rem 0 .5rem}
+.sub{color:var(--muted);font-size:.93rem}
+svg{display:block;width:100%;height:auto}
+.axis{fill:var(--muted);font-size:12px;font-family:"Source Sans 3",system-ui,sans-serif}
+.lab{fill:var(--ink);font-size:12.5px;font-family:"Source Sans 3",system-ui,sans-serif;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.88rem;color:var(--muted);margin-top:.3rem}
+.sw{display:inline-block;width:.9rem;height:.6rem;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.6rem}
+@media (max-width:520px){.stats{grid-template-columns:1fr}}
+.stat{border-top:3px solid var(--line);padding-top:.35rem;font-size:.9rem}
+.stat b{display:block;font-family:Fraunces,Georgia,serif;font-size:1.15rem}
+.flag{border-left:4px solid var(--rust);padding:.35rem .7rem;margin:.6rem 0;font-size:.95rem;background:var(--req);border-radius:0 6px 6px 0}
+.hbar{display:grid;grid-template-columns:minmax(8rem,13rem) 1fr;gap:.6rem;align-items:center;font-size:.9rem;margin:.28rem 0}
+.hbar .t{position:relative;height:1.1rem}
+.hbar .b{position:absolute;top:.15rem;height:.8rem;border-radius:3px}
+.hbar .mid{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.5}
+textarea{width:100%;min-height:11rem;font:13.5px/1.45 "Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.6rem}
+.btn{font:inherit;font-weight:600;background:var(--rust);color:var(--cream);border:0;border-radius:8px;padding:.5rem 1rem;cursor:pointer;margin:.5rem .6rem .3rem 0}
+.check{font-size:.93rem;padding-left:1.1rem;margin:.4rem 0}
+.check li{margin:.2rem 0}
+footer{margin-top:2.2rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:no-preference){.band{transition:x .25s ease,width .25s ease}}
+.src{font:inherit;font-size:.88rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.25rem .4rem;max-width:100%}
+.treat{font-size:.82rem;color:var(--muted)}
+.row.uncertain .treat{color:var(--rust)}
+.note{font:inherit;font-size:.86rem;width:100%;margin-top:.35rem;color:var(--ink);background:transparent;border:0;border-bottom:1px dashed var(--line);padding:.15rem 0}
+.relief{display:flex;gap:.5rem;align-items:flex-start;margin:.6rem 0 .3rem;font-size:.95rem}
+.relief input{margin-top:.25rem;accent-color:var(--rust)}
+details.thinks{max-width:62ch;margin:.2rem 0 1.4rem;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.6rem 1rem}
+details.thinks summary{cursor:pointer;font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.05rem}
+details.thinks[open] summary{margin-bottom:.4rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Break-even under uncertainty</h1>
+  <p class="lede">Most break-even tools ask you to predict your sales. This one asks what has to be true for the business to cover its costs, and how much of that you actually know.</p>
+  <div class="modes" role="group" aria-label="Business type">
+    <button class="mode" data-mode="retail"><b>Retail</b><span>Second Spin Records</span></button>
+    <button class="mode" data-mode="service"><b>Service</b><span>Ridgeline Mobile Bike Repair</span></button>
+    <button class="mode" data-mode="manufacturing"><b>Manufacturing</b><span>Arroyo Hot Sauce Co.</span></button>
+  </div>
+  <div class="key">
+    <div class="k"><b>Fact.</b> It's on a quote, lease, or contract, or it's your own decision. One number.</div>
+    <div class="r"><b>Evidence.</b> Your own records, your own count, or industry data you checked. A range.</div>
+    <div class="u"><b>Guess.</b> Your estimate, or anything from AI or the web you haven't checked. Testing it is the work.</div>
+  </div>
+  <p class="sub" style="max-width:62ch">You don't sort these yourself. Tell the tool where each number came from, and it sorts them.</p>
+  <details class="thinks"><summary>How this tool thinks</summary>
+    <p>A product idea isn't a business. A business is the system that makes selling it repeatable, and most of what sinks a new one is a constraint nobody looked at in time. So this tool doesn't ask you to predict your sales. It works out what has to be true for the business to cover its costs, keeps track of where every number came from, and points you at the guess that matters most.</p>
+    <p>There are no odds anywhere, on purpose. Most early numbers are guesses, and putting probabilities on guesses makes them look like knowledge. When a result looks too good, the tool treats that as a sign of a missing constraint, not as good news.</p>
+    <p class="sub">One tool in a small business discovery toolkit in development. <a href="https://portfolio.endogenator.com/" target="_blank" rel="noopener">See the rest of my work with AI</a>.</p>
+  </details>
+</header>
+
+<div class="grid">
+  <section class="inputs" aria-label="Your numbers">
+    <div class="panel">
+      <h2 id="exname"></h2>
+      <p class="blurb" id="exblurb"></p>
+      <div class="row plain"><div class="rowtop"><label for="cash">Cash on hand after opening</label></div>
+        <div class="fields"><span class="fld">$<input id="cash" type="number" min="0" step="100"></span></div></div>
+      <div class="row plain"><div class="rowtop"><label for="afford">Most you can afford to lose</label></div>
+        <div class="fields"><span class="fld">$<input id="afford" type="number" min="0" step="100"></span></div>
+        <p class="sub">Decide this before you open. It becomes your stop point.</p></div>
+    </div>
+    <div class="panel">
+      <h2>Monthly fixed costs</h2>
+      <p class="sub">What you pay whether or not anyone buys. Click a name to rename it.</p>
+      <div id="fixed"></div>
+      <button class="add" id="addfixed">Add a cost</button>
+    </div>
+    <div class="panel">
+      <h2>How the business earns</h2>
+      <div id="engine"></div>
+    </div>
+    <div class="panel">
+      <h2>Limits</h2>
+      <p class="sub" id="limitsub"></p>
+      <div id="limits"></div>
+      <label class="relief" id="reliefrow"><input type="checkbox" id="relief"> <span id="relieflabel"></span></label>
+    </div>
+  </section>
+
+  <section class="results" aria-live="polite" aria-label="Results">
+    <div class="panel">
+      <h2 class="sr">What has to be true</h2>
+      <p class="verdict" id="verdict"></p>
+      <div id="bandchart"></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--req);border:1px solid var(--rust)"></i>Volume needed to break even</span>
+        <span><i class="sw" style="background:var(--exp);border:1px solid var(--slate)"></i>Volume you expect</span>
+        <span id="caplegend"><i class="sw" style="border-top:2px dashed var(--ink);height:0"></i>Capacity</span>
+      </div>
+      <div id="flags"></div>
+    </div>
+    <div class="panel">
+      <h2>Cash over 18 months</h2>
+      <p class="sub">Cash before taxes and before reinvesting anything.</p>
+      <p class="sub">The good and tough cases put every range at its favorable or unfavorable end at once. They mark the edges of what your numbers allow. They are not predictions, and nothing here assigns odds.</p>
+      <div id="cashchart"></div>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--slate)"></i>Good case</span>
+        <span><i class="sw" style="background:var(--ink)"></i>Middle</span>
+        <span><i class="sw" style="background:var(--rust)"></i>Tough case</span>
+        <span><i class="sw" style="border-top:2px dashed var(--clay);height:0"></i>Stop point</span>
+      </div>
+      <div class="stats" id="stats"></div>
+      <p class="sub" id="wcnote"></p>
+    </div>
+    <div class="panel" id="goodpanel">
+      <h2>Question the good case</h2>
+      <p class="sub">A result that looks too good usually means a constraint is missing. For the good case to happen, all of this has to be true at the same time:</p>
+      <ul class="check" id="goodlist"></ul>
+      <p class="sub" id="goodsurplus"></p>
+    </div>
+    <div class="panel">
+      <h2>What it hinges on</h2>
+      <p class="sub">Each bar swings one range from its unfavorable end to its favorable end while everything else stays in the middle. The measure is your lowest cash point. Facts don't appear, because they don't move.</p>
+      <div id="hinges"></div>
+      <p id="hingenote"></p>
+    </div>
+    <div class="panel">
+      <h2>Red-team it with AI</h2>
+      <p class="sub">Copy this into any free AI tool (ChatGPT, Claude, Gemini, Copilot). It carries your numbers and where each one came from, and it tells the AI not to turn your guesses into fake certainty.</p>
+      <textarea id="prompt" readonly aria-label="Prompt for an AI tool"></textarea>
+      <button class="btn" id="copy">Copy prompt</button><span id="copied" class="sub" role="status"></span>
+      <h3>When the answer comes back</h3>
+      <ul class="check">
+        <li>If it gives one precise number for something that's still a guess, ask what the number is based on.</li>
+        <li>If it cites a statistic, ask for the source and check it yourself before you use it.</li>
+        <li>If it says the plan looks great, ask for the three most likely ways it fails.</li>
+        <li>If it points you to real data for one of your guesses, check the data, then change where that number comes from.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+<footer><span>A mentoring tool by Brian R. Davis. Examples are fictional. <a href="https://portfolio.endogenator.com/" target="_blank" rel="noopener">More work</a></span><span>&copy; <span id="yr"></span> Brian R. Davis</span></footer>
+</div>
+<script>
+const SRC = {
+  quote:{label:'On a quote, lease, or contract', cls:'known'},
+  records:{label:'From my own past records', cls:'risk'},
+  research:{label:'From my own count or research', cls:'risk'},
+  checked:{label:'From industry data I checked', cls:'risk'},
+  online:{label:'From AI or online, not checked yet', cls:'uncertain'},
+  guess:{label:'My best guess', cls:'uncertain'}
+};
+const CLSNAME = {known:'fact', risk:'evidence', uncertain:'guess'};
+const tagOf = it => SRC[it.src].cls;
+const W = 4.33, MONTHS = 18;
+function pick(inp, s){
+  if (tagOf(inp) === 'known') return inp.lo;
+  const lo = Math.min(inp.lo, inp.hi), hi = Math.max(inp.lo, inp.hi);
+  if (s === 'mid') return (lo+hi)/2;
+  const fav = inp.dir === 'up' ? hi : lo, unf = inp.dir === 'up' ? lo : hi;
+  return s === 'good' ? fav : unf;
+}
+function values(ex, s, ov){
+  const p = {}; let F = 0;
+  ex.fixed.forEach(f => { let v = pick(f, s); if (ov && ov.id === f.id) v = ov.v; F += v; });
+  ex.inputs.forEach(i => { let v = pick(i, s); if (ov && ov.id === i.key) v = ov.v; p[i.key] = v; });
+  p.F = F; return p;
+}
+const ENG = {
+  retail:{ unitLabel:'transactions a day', stepWord:'part-time staff member',
+    per:p => p.days * p.ticket * p.margin/100,
+    wc:(p,v) => v * p.days * p.ticket * (1 - p.margin/100) * 12 / p.turns, wc0:'level',
+    cap:p => p.basecap, step:p => ({cost:p.stepcost, size:p.stepsize}) },
+  service:{ unitLabel:'billable hours a week', stepWord:'helper',
+    per:p => W * p.rate * (1 - p.varpct/100),
+    wc:(p,v) => 0, wc0:'zero',
+    cap:p => p.caphours * p.maxutil/100, step:p => null },
+  manufacturing:{ unitLabel:'units a month', stepWord:'second production shift',
+    per:p => p.price - p.materials - p.labor,
+    wc:(p,v) => v * p.price * p.terms / 30, wc0:'zero',
+    cap:p => p.capunits, step:p => ({cost:p.stepcost, size:p.stepsize}) }
+};
+function maxSteps(ex){ const e = ENG[ex.mode]; return (ex.relief && ex.steps) ? ex.steps : 0; }
+function plan(ex, p, v){
+  const e = ENG[ex.mode], cap = e.cap(p), st = e.step(p), N = maxSteps(ex);
+  let n = 0;
+  if (v > cap && st && N > 0 && st.size > 0) n = Math.min(N, Math.ceil((v - cap) / st.size));
+  const capT = cap + n * (st ? st.size : 0);
+  return { served: Math.min(v, capT), n, extra: n * (st ? st.cost : 0), capped: v > capT, capT };
+}
+function required(ex, s, ov){
+  const p = values(ex, s, ov), e = ENG[ex.mode], per = e.per(p), cap = e.cap(p), st = e.step(p), N = maxSteps(ex);
+  if (per <= 0) return {v:Infinity, n:0, ok:false, loss:true};
+  for (let n = 0; n <= N; n++){
+    const r = (p.F + n * (st ? st.cost : 0)) / per;
+    if (r <= cap + n * (st ? st.size : 0)) return {v:r, n, ok:true};
+  }
+  return {v:(p.F + N * (st ? st.cost : 0)) / per, n:N, ok:false};
+}
+function sim(ex, s, ov){
+  const p = values(ex, s, ov), e = ENG[ex.mode];
+  const ramp = Math.max(1, Math.round(p.ramp)), st0 = p.startpct/100;
+  const vAt = m => p.volume * Math.min(1, ramp <= 1 ? 1 : st0 + (1-st0)*(m-1)/(ramp-1));
+  let cash = ex.cash, out = [], low = cash, beM = null, maxN = 0, firstStep = null, capped = false;
+  let wcPrev = e.wc0 === 'level' ? e.wc(p, plan(ex,p,vAt(1)).served) : 0;
+  for (let m = 1; m <= MONTHS; m++){
+    const pl = plan(ex, p, vAt(m)), prof = e.per(p) * pl.served - p.F - pl.extra, wc = e.wc(p, pl.served);
+    cash += prof - (wc - wcPrev); wcPrev = wc;
+    if (beM === null && prof >= 0) beM = m;
+    if (pl.n > maxN){ maxN = pl.n; if (firstStep === null) firstStep = m; }
+    if (pl.capped) capped = true;
+    low = Math.min(low, cash); out.push(cash);
+  }
+  return { path:out, low, beM, maxN, firstStep, capped, p };
+}
+const EXAMPLES = {
+ retail:{ mode:'retail', name:'Second Spin Records', blurb:'A used-vinyl and music shop in a downtown storefront.',
+  cash:30000, afford:18000, steps:2, relief:true,
+  fixed:[
+   {id:'f1',label:'Rent',src:'quote',lo:2800,hi:2800,note:'Lease option, 1,400 sq ft'},
+   {id:'f2',label:'Utilities',src:'research',lo:350,hi:500,note:'Asked two neighboring shops'},
+   {id:'f3',label:'Insurance',src:'quote',lo:180,hi:180,note:'Quote from local agent'},
+   {id:'f4',label:'POS and software',src:'quote',lo:120,hi:120,note:''},
+   {id:'f5',label:'Part-time staff',src:'records',lo:2300,hi:2500,note:'Two part-timers, based on past payroll'},
+   {id:'f6',label:'Marketing and events',src:'guess',lo:300,hi:700,note:''},
+   {id:'f7',label:'Owner draw',src:'quote',lo:2500,hi:2500,note:'My decision'}],
+  inputs:[
+   {key:'volume',label:'Transactions a day',src:'guess',lo:22,hi:42,dir:'up',note:''},
+   {key:'ticket',label:'Average ticket',unit:'$',src:'checked',lo:30,hi:38,dir:'up',note:''},
+   {key:'margin',label:'Gross margin',unit:'%',src:'checked',lo:44,hi:50,dir:'up',note:'Used vinyl mix, trade association figures'},
+   {key:'days',label:'Days open a month',src:'quote',lo:26,hi:26,dir:'up',note:''},
+   {key:'turns',label:'Inventory turns a year',src:'online',lo:4,hi:6,dir:'up',note:''},
+   {key:'ramp',label:'Months to reach full volume',src:'guess',lo:4,hi:10,dir:'down',note:''},
+   {key:'startpct',label:'Opening volume, share of full',unit:'%',src:'guess',lo:35,hi:55,dir:'up',note:''},
+   {key:'basecap',label:'Transactions current staff can handle a day',group:'limit',src:'guess',lo:30,hi:36,dir:'up',note:''},
+   {key:'stepcost',label:'Cost of one more part-time staff a month',unit:'$',group:'limit',src:'records',lo:1150,hi:1300,dir:'down',note:''},
+   {key:'stepsize',label:'Added transactions a day per added staff',group:'limit',src:'guess',lo:15,hi:22,dir:'up',note:''}]},
+ service:{ mode:'service', name:'Ridgeline Mobile Bike Repair', blurb:'A one-person repair van that comes to the customer.',
+  cash:9000, afford:6000, steps:0, relief:false,
+  fixed:[
+   {id:'f1',label:'Van payment',src:'quote',lo:520,hi:520,note:''},
+   {id:'f2',label:'Insurance',src:'quote',lo:210,hi:210,note:''},
+   {id:'f3',label:'Fuel',src:'research',lo:300,hi:550,note:'Tracked a month of practice routes'},
+   {id:'f4',label:'Phone and booking software',src:'quote',lo:90,hi:90,note:''},
+   {id:'f5',label:'Marketing',src:'guess',lo:150,hi:400,note:''},
+   {id:'f6',label:'Owner draw',src:'quote',lo:3500,hi:3500,note:'My decision'}],
+  inputs:[
+   {key:'volume',label:'Billable hours a week',src:'guess',lo:14,hi:26,dir:'up',note:''},
+   {key:'rate',label:'Hourly rate',unit:'$',src:'research',lo:85,hi:105,dir:'up',note:'Called four local shops'},
+   {key:'varpct',label:'Parts and supplies, share of revenue',unit:'%',src:'online',lo:12,hi:18,dir:'down',note:''},
+   {key:'ramp',label:'Months to reach full volume',src:'guess',lo:3,hi:8,dir:'down',note:''},
+   {key:'startpct',label:'Opening volume, share of full',unit:'%',src:'guess',lo:25,hi:45,dir:'up',note:''},
+   {key:'caphours',label:'Hours you can work a week',group:'limit',src:'quote',lo:45,hi:45,dir:'up',note:'My decision'},
+   {key:'maxutil',label:'Share of those hours you can bill',unit:'%',group:'limit',src:'guess',lo:50,hi:65,dir:'up',note:'Travel and admin take the rest'}]},
+ manufacturing:{ mode:'manufacturing', name:'Arroyo Hot Sauce Co.', blurb:'Small-batch hot sauce made in a shared kitchen and sold wholesale.',
+  cash:18000, afford:12000, steps:1, relief:true,
+  fixed:[
+   {id:'f1',label:'Shared kitchen rent',src:'quote',lo:1600,hi:1600,note:'20 hours a week'},
+   {id:'f2',label:'Insurance',src:'quote',lo:240,hi:240,note:''},
+   {id:'f3',label:'Equipment loan',src:'quote',lo:450,hi:450,note:''},
+   {id:'f4',label:'Utilities',src:'research',lo:200,hi:350,note:''},
+   {id:'f5',label:'Sales demos and marketing',src:'guess',lo:400,hi:900,note:''},
+   {id:'f6',label:'Owner draw',src:'quote',lo:2500,hi:2500,note:'My decision'}],
+  inputs:[
+   {key:'volume',label:'Units sold a month',src:'guess',lo:1500,hi:3500,dir:'up',note:''},
+   {key:'price',label:'Wholesale price per unit',unit:'$',src:'research',lo:5.5,hi:6.5,dir:'up',note:'Two buyers quoted a range'},
+   {key:'materials',label:'Materials per unit',unit:'$',src:'quote',lo:1.9,hi:1.9,dir:'down',note:'Supplier price sheet'},
+   {key:'labor',label:'Labor per unit',unit:'$',src:'guess',lo:0.9,hi:1.3,dir:'down',note:''},
+   {key:'terms',label:'Days until buyers pay',src:'checked',lo:30,hi:45,dir:'down',note:''},
+   {key:'ramp',label:'Months to reach full volume',src:'guess',lo:5,hi:10,dir:'down',note:''},
+   {key:'startpct',label:'Opening volume, share of full',unit:'%',src:'guess',lo:20,hi:40,dir:'up',note:''},
+   {key:'capunits',label:'Most units you can make a month',group:'limit',src:'research',lo:2800,hi:3200,dir:'up',note:'Two test batches'},
+   {key:'stepcost',label:'Cost of a second shift a month',unit:'$',group:'limit',src:'quote',lo:1400,hi:1400,dir:'down',note:'Kitchen quote for added hours'},
+   {key:'stepsize',label:'Added units a month from a second shift',group:'limit',src:'guess',lo:1500,hi:2200,dir:'up',note:''}]}
+};
+let S = null, idc = 100;
+const $ = id => document.getElementById(id);
+const clone = o => JSON.parse(JSON.stringify(o));
+const money = v => (v < 0 ? '-$' : '$') + Math.abs(Math.round(v)).toLocaleString('en-US');
+const num = v => !isFinite(v) ? 'no finite amount' : (v >= 100 ? Math.round(v).toLocaleString('en-US') : (Math.round(v*10)/10).toString());
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtV = (it, v) => it.unit === '$' || (!it.unit && it.id) ? '$' + num(v) : it.unit === '%' ? num(v) + '%' : num(v);
+const TREAT = {known:'Treated as a fact', risk:'Treated as evidence', uncertain:'Treated as a guess to test'};
+
+function load(mode){
+  S = clone(EXAMPLES[mode]);
+  document.querySelectorAll('.mode').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === mode));
+  $('exname').textContent = S.name; $('exblurb').textContent = S.blurb;
+  $('cash').value = S.cash; $('afford').value = S.afford;
+  const e = ENG[S.mode];
+  if (S.steps > 0){
+    $('reliefrow').style.display = ''; $('relief').checked = S.relief;
+    $('relieflabel').textContent = `Add a ${e.stepWord} when volume needs it (up to ${S.steps}). Unchecked, sales above your limit are simply lost.`;
+    $('limitsub').textContent = 'What stops the business from serving more customers, and what it costs to push that limit back.';
+  } else {
+    $('reliefrow').style.display = 'none';
+    $('limitsub').textContent = "Your own hours are the limit. There's no one else to add yet, so sales above it are lost.";
+  }
+  renderInputs(); update();
+}
+
+function rowHTML(it, kind){
+  const id = kind === 'f' ? it.id : it.key, tag = tagOf(it);
+  const unit = kind === 'f' ? '$' : (it.unit || '');
+  const pre = unit === '$' ? '$' : '', suf = unit === '%' ? '%' : '';
+  const name = kind === 'f'
+    ? `<input class="lblin" data-id="${id}" data-k="${kind}" data-f="label" value="${esc(it.label)}" aria-label="Cost name">`
+    : `<span class="lbl">${esc(it.label)}</span>`;
+  const opts = Object.keys(SRC).map(k => `<option value="${k}"${it.src===k?' selected':''}>${SRC[k].label}</option>`).join('');
+  const sel = `<select class="src" data-id="${id}" data-k="${kind}" data-f="src" aria-label="Where ${esc(it.label)} comes from">${opts}</select>`;
+  const f = tag === 'known'
+    ? `<span class="fld">${pre}<input type="number" step="any" data-id="${id}" data-k="${kind}" data-f="lo" value="${it.lo}" aria-label="${esc(it.label)} value">${suf}</span>`
+    : `<span class="fld">from ${pre}<input type="number" step="any" data-id="${id}" data-k="${kind}" data-f="lo" value="${it.lo}" aria-label="${esc(it.label)} low">${suf}</span>
+       <span class="fld">to ${pre}<input type="number" step="any" data-id="${id}" data-k="${kind}" data-f="hi" value="${it.hi}" aria-label="${esc(it.label)} high">${suf}</span>`;
+  const rm = kind === 'f' ? `<button class="x" data-rm="${id}">Remove</button>` : '';
+  const note = `<input class="note" data-id="${id}" data-k="${kind}" data-f="note" value="${esc(it.note||'')}" placeholder="Where exactly? The vendor, the date, what you counted" aria-label="Note on ${esc(it.label)}">`;
+  return `<div class="row ${tag}"><div class="rowtop">${name}<span class="treat">${TREAT[tag]}</span></div>
+    <div class="fields">${sel}</div><div class="fields">${f}${rm}</div>${note}</div>`;
+}
+function renderInputs(){
+  $('fixed').innerHTML = S.fixed.map(x => rowHTML(x,'f')).join('');
+  $('engine').innerHTML = S.inputs.filter(x => !x.group).map(x => rowHTML(x,'e')).join('');
+  $('limits').innerHTML = S.inputs.filter(x => x.group === 'limit').map(x => rowHTML(x,'e')).join('');
+}
+function find(k, id){ return k === 'f' ? S.fixed.find(x => x.id === id) : S.inputs.find(x => x.key === id); }
+
+function onEdit(e){
+  const t = e.target;
+  if (t.id === 'cash' || t.id === 'afford'){ S[t.id] = parseFloat(t.value) || 0; update(); return; }
+  if (t.id === 'relief'){ S.relief = t.checked; update(); return; }
+  if (!t.dataset || !t.dataset.k) return;
+  const it = find(t.dataset.k, t.dataset.id); if (!it) return;
+  const f = t.dataset.f;
+  if (f === 'label' || f === 'note'){ it[f] = t.value; update(); return; }
+  if (f === 'src'){
+    if (it.src === t.value) return;
+    const was = tagOf(it); it.src = t.value; const now = tagOf(it);
+    if (now === 'known' && was !== 'known'){ const m = (Math.min(it.lo,it.hi)+Math.max(it.lo,it.hi))/2; it.lo = it.hi = Math.round(m*100)/100; }
+    else if (was === 'known' && now !== 'known' && it.lo === it.hi){ const b = it.lo; it.lo = Math.round(b*0.85*100)/100; it.hi = Math.round(b*1.15*100)/100; }
+    renderInputs(); update(); return;
+  }
+  const v = parseFloat(t.value); if (isNaN(v)) return;
+  it[f] = v; if (tagOf(it) === 'known') it.hi = v;
+  update();
+}
+document.addEventListener('input', onEdit);
+document.addEventListener('change', e => { if (e.target.tagName === 'SELECT' || e.target.type === 'checkbox') onEdit(e); });
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.mode){ load(t.dataset.mode); return; }
+  if (t.dataset.rm){ S.fixed = S.fixed.filter(x => x.id !== t.dataset.rm); renderInputs(); update(); return; }
+  if (t.id === 'addfixed'){ S.fixed.push({id:'n'+(idc++),label:'New cost',src:'guess',lo:0,hi:0,note:''}); renderInputs(); update();
+    const ins = $('fixed').querySelectorAll('.lblin'); const last = ins[ins.length-1]; if (last){ last.focus(); last.select(); } return; }
+  if (t.id === 'copy') copyPrompt();
+});
+
+function niceStep(max){ const raw = max/6, p = Math.pow(10, Math.floor(Math.log10(raw))), n = raw/p; return (n < 1.5 ? 1 : n < 3.5 ? 2 : n < 7.5 ? 5 : 10) * p; }
+
+function bandChart(req, exp, caps, unit){
+  const Wd = 600, H = 150, L = 20, R = 20;
+  const reqHi = isFinite(req[0]) ? req[0] : exp[1];
+  const max = Math.max(exp[1], reqHi, ...caps.map(c => c.v)) * 1.12 || 1;
+  const x = v => L + (Math.min(v, max) / max) * (Wd - L - R);
+  let ticks = ''; const step = niceStep(max);
+  for (let v = 0; v <= max; v += step) ticks += `<line x1="${x(v)}" x2="${x(v)}" y1="118" y2="123" stroke="var(--muted)"/><text class="axis" x="${x(v)}" y="138" text-anchor="middle">${num(v)}</text>`;
+  const r0 = x(req[2]), r1 = x(reqHi), e0 = x(exp[0]), e1 = x(exp[1]);
+  const capLines = caps.map((c,i) => `<line x1="${x(c.v)}" x2="${x(c.v)}" y1="${8+i*12}" y2="118" stroke="var(--ink)" stroke-width="${i?1.5:2}" stroke-dasharray="${i?'2 4':'5 4'}"/><text class="lab" x="${x(c.v)-4}" y="${16+i*12}" text-anchor="end">${c.label} ${num(c.v)}</text>`).join('');
+  return `<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="Needed volume ${num(req[2])} to ${num(req[0])} ${unit}; expected ${num(exp[0])} to ${num(exp[1])}">
+    <rect class="band" x="${r0}" y="30" width="${Math.max(2,r1-r0)}" height="34" fill="var(--req)" stroke="var(--rust)" rx="4"/>
+    <line x1="${x(req[1])}" x2="${x(req[1])}" y1="30" y2="64" stroke="var(--rust)" stroke-width="2"/>
+    <text class="lab" x="${r0}" y="52" dx="6">needed</text>
+    <rect class="band" x="${e0}" y="74" width="${Math.max(2,e1-e0)}" height="34" fill="var(--exp)" stroke="var(--slate)" rx="4"/>
+    <text class="lab" x="${e0}" y="104" dx="6">expected</text>
+    <line x1="${L}" x2="${Wd-R}" y1="118" y2="118" stroke="var(--line)"/>${ticks}${capLines}
+    <text class="axis" x="${Wd-R}" y="148" text-anchor="end">${unit}</text></svg>`;
+}
+
+function cashChart(paths, floor){
+  const Wd = 600, H = 230, L = 62, R = 14, T = 12, B = 30, M = MONTHS;
+  const core = paths[1].concat(paths[2], [floor, 0, S.cash]);
+  let lo = Math.min(...core, ...paths[0]), hi = Math.max(...core);
+  const span = (hi - lo) || 1000; hi += span * 0.35; lo -= span * 0.06;
+  const goodOff = Math.max(...paths[0]) > hi;
+  const x = m => L + (m/M)*(Wd-L-R), y = v => T + (hi - v)/(hi - lo)*(H-T-B);
+  const step = niceStep(hi-lo); let grid = '';
+  for (let v = Math.ceil(lo/step)*step; v <= hi; v += step) grid += `<line x1="${L}" x2="${Wd-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="${Math.abs(v)<1e-6?1.5:0.7}"/><text class="axis" x="${L-6}" y="${y(v)+4}" text-anchor="end">${money(v)}</text>`;
+  for (let m = 0; m <= M; m += 6) grid += `<text class="axis" x="${x(m)}" y="${H-10}" text-anchor="middle">${m===0?'open':'month '+m}</text>`;
+  const cols = ['var(--slate)','var(--ink)','var(--rust)'];
+  const lines = paths.map((p,i) => `<polyline clip-path="url(#plot)" fill="none" stroke="${cols[i]}" stroke-width="${i===1?2.5:2}" stroke-linejoin="round" points="${[S.cash].concat(p).map((v,m)=>x(m)+','+y(v)).join(' ')}"/>`).join('');
+  const off = goodOff ? `<text class="lab" x="${Wd-R}" y="${T+12}" text-anchor="end" style="fill:var(--slate)">good case keeps rising off the chart</text>` : '';
+  return `<svg viewBox="0 0 ${Wd} ${H}" role="img" aria-label="Cash path over ${M} months for good, middle and tough cases">
+    <defs><clipPath id="plot"><rect x="${L}" y="${T}" width="${Wd-L-R}" height="${H-T-B}"/></clipPath></defs>${grid}
+    <line x1="${L}" x2="${Wd-R}" y1="${y(floor)}" y2="${y(floor)}" stroke="var(--clay)" stroke-width="2" stroke-dasharray="6 4"/>
+    <text class="lab" x="${L+6}" y="${y(floor)+16}" style="fill:var(--clay)">stop point ${money(floor)}</text>${lines}${off}</svg>`;
+}
+
+function update(){
+  const e = ENG[S.mode], vol = S.inputs.find(i => i.key === 'volume');
+  const R = ['tough','mid','good'].map(s => required(S, s));
+  const req = R.map(r => r.v);
+  const exp = [Math.min(vol.lo, vol.hi), Math.max(vol.lo, vol.hi)];
+  const pMid = values(S,'mid'), baseCap = e.cap(pMid), st = e.step(pMid), N = maxSteps(S);
+  const caps = [{v:baseCap, label: S.mode === 'service' ? 'your hours' : 'capacity'}];
+  if (N > 0 && st) caps.push({v: baseCap + N*st.size, label:'with added ' + (S.mode==='manufacturing'?'shift':'staff')});
+  $('bandchart').innerHTML = bandChart(req, exp, caps, e.unitLabel);
+  let v;
+  if (R[2].loss) v = 'Every unit sold loses money even in the good case. Price or unit costs have to change before volume matters.';
+  else if (R[0].loss) v = 'In the tough case every sale loses money, so no volume saves it. The margin numbers are the first thing to test.';
+  else if (!R[0].ok) v = `In the tough case the business can't break even inside its limits. That's a constraint problem, not a sales problem.`;
+  else if (req[0] <= exp[0]) v = `You clear break-even across your whole expected range. The open question is cash while you ramp up.`;
+  else if (req[2] > exp[1]) v = `Even the good case needs more than you expect to sell. In this form it isn't a business yet.`;
+  else v = `Break-even sits inside your uncertainty. You need ${num(req[2])} to ${num(req[0])} ${e.unitLabel}, and you expect ${num(exp[0])} to ${num(exp[1])}.`;
+  $('verdict').textContent = v;
+  let fl = '';
+  const word = e.stepWord;
+  if (!R[0].ok && !R[0].loss) fl += `<div class="flag">In the tough case, break-even needs ${num(req[0])} ${e.unitLabel}, more than the business can ${S.mode==='service'?'bill':'handle'}${N?` even with every ${word} added`:''}. Pushing the limit back, or lowering fixed costs, comes before selling more.</div>`;
+  else if (R[0].n > 0) fl += `<div class="flag">In the tough case, breaking even requires adding ${R[0].n === 1 ? 'a ' + word : R[0].n + ' of them'}, and that cost is included. The limit is part of the break-even, not separate from it.</div>`;
+  const maxCap = caps[caps.length-1].v;
+  if (exp[1] > maxCap) fl += `<div class="flag">You expect up to ${num(exp[1])} ${e.unitLabel}, but the most the business can serve is about ${num(maxCap)}. Sales above that are lost in the cash chart.</div>`;
+  if (S.mode === 'service') fl += `<p class="sub">At the middle case, break-even uses ${Math.round(req[1]/pMid.caphours*100)}% of your working hours. The rest goes to travel, admin, and finding the next customer.</p>`;
+  $('flags').innerHTML = fl;
+
+  const floor = S.cash - S.afford;
+  const sims = ['good','mid','tough'].map(s => sim(S, s));
+  $('cashchart').innerHTML = cashChart(sims.map(s => s.path), floor);
+  $('stats').innerHTML = sims.map((s,i) => {
+    const nm = ['Good case','Middle','Tough case'][i];
+    const be = s.beM ? `profitable from month ${s.beM}` : `never profitable in ${MONTHS} months`;
+    const hit = s.path.findIndex(c => c < floor);
+    const stop = hit >= 0 ? `hits your stop point in month ${hit+1}` : `lowest cash ${money(s.low)}`;
+    const add = s.maxN ? `<br>adds ${s.maxN === 1 ? 'a ' + word : s.maxN + ' ' + word + 's'} from month ${s.firstStep}` : '';
+    const cap = s.capped ? '<br>turns customers away at its limit' : '';
+    return `<div class="stat" style="border-color:${['var(--slate)','var(--ink)','var(--rust)'][i]}">${nm}<b>${be}</b>${stop}${add}${cap}</div>`;
+  }).join('');
+  $('wcnote').textContent = S.mode === 'retail' ? 'Opening inventory is assumed bought with startup funds. As sales grow, more cash sits on the shelves, which is why cash can fall while the shop is profitable.'
+    : S.mode === 'manufacturing' ? 'Buyers pay after delivery, so money is owed to you before it arrives. That gap grows as volume grows, which is why cash can fall while the business is profitable.'
+    : 'A service business carries little inventory, so your own hours are the constraint to watch.';
+
+  const good = sims[0], gl = [];
+  S.inputs.forEach(it => {
+    if (tagOf(it) === 'known' || it.lo === it.hi) return;
+    const lo = Math.min(it.lo,it.hi), hi = Math.max(it.lo,it.hi), fav = (it.dir === 'up') ? hi : lo;
+    gl.push(`<li>${esc(it.label)} at ${fmtV(it, fav)}${tagOf(it)==='uncertain' ? ', still a guess' : ''}</li>`);
+  });
+  const rf = S.fixed.filter(f => tagOf(f) !== 'known' && f.lo !== f.hi);
+  if (rf.length) gl.push(`<li>${rf.length === 1 ? esc(rf[0].label) + ' at the low end of its range' : 'Every fixed cost with a range at its low end'}, ${money(good.p.F)} a month in fixed costs in total</li>`);
+  if (good.maxN) gl.push(`<li>Adding ${good.maxN === 1 ? 'a ' + word : good.maxN + ' ' + word + 's'} is enough to keep up, with no other new costs</li>`);
+  gl.push(`<li>Nothing else in the system changes: no rent increase, no competitor response, no slow season, no second location, no need for more of your own time</li>`);
+  $('goodlist').innerHTML = gl.join('');
+  $('goodsurplus').textContent = `If it did all come true, the good case ends with ${money(good.path[MONTHS-1])} in cash. A business growing that well wouldn't let that sit. It would spend it relieving the next constraint before it binds, which is a question for a different tool.`;
+
+  const base = sim(S,'mid').low, ranged = [];
+  S.fixed.concat(S.inputs).forEach(it => {
+    if (tagOf(it) === 'known') return;
+    const id = it.id || it.key, lo = Math.min(it.lo,it.hi), hi = Math.max(it.lo,it.hi);
+    const fav = (it.id || it.dir !== 'up') ? lo : hi, unf = (it.id || it.dir !== 'up') ? hi : lo;
+    const g = sim(S,'mid',{id, v:fav}).low, t = sim(S,'mid',{id, v:unf}).low;
+    ranged.push({label: it.label, tag: tagOf(it), g, t, span: Math.abs(g - t)});
+  });
+  ranged.sort((a,b) => b.span - a.span);
+  if (!ranged.length){ $('hinges').innerHTML = '<p class="sub">Every number is a fact, so nothing swings.</p>'; $('hingenote').textContent=''; }
+  else {
+    const mn = Math.min(base, ...ranged.map(r => Math.min(r.g, r.t))), mx = Math.max(base, ...ranged.map(r => Math.max(r.g, r.t)));
+    const px = v => ((v - mn) / ((mx - mn) || 1)) * 100;
+    $('hinges').innerHTML = ranged.slice(0,8).map(r => {
+      const a = px(Math.min(r.g,r.t)), b = px(Math.max(r.g,r.t));
+      const col = r.tag === 'uncertain' ? 'var(--rust)' : 'var(--slate)';
+      return `<div class="hbar"><span>${esc(r.label)} <span class="sub">(${CLSNAME[r.tag]})</span></span><span class="t" title="${money(r.t)} to ${money(r.g)}"><span class="b" style="left:${a}%;width:${Math.max(1,b-a)}%;background:${col}"></span><span class="mid" style="left:${px(base)}%"></span></span></div>`;
+    }).join('') + `<p class="sub">Bars run from ${money(mn)} to ${money(mx)} lowest cash. The thin line is the middle case.</p>`;
+    const top = ranged[0], topU = ranged.find(r => r.tag === 'uncertain');
+    let n = `<b>${esc(top.label)}</b> moves your lowest cash point the most, a swing of ${money(top.span)}. `;
+    n += top.tag === 'uncertain' ? "It's still a guess, so it's the number most worth paying to test first."
+      : `It's backed by evidence, so better evidence can narrow it.${topU ? ` Among your guesses, test <b>${esc(topU.label)}</b> first.` : ''}`;
+    $('hingenote').innerHTML = n;
+  }
+  $('prompt').value = buildPrompt(req, exp, maxCap, sims);
+}
+
+function fmtItem(it){
+  const isFixed = !!it.id, t = tagOf(it);
+  const f = v => isFixed || it.unit === '$' ? '$' + v : it.unit === '%' ? v + '%' : v;
+  const val = t === 'known' ? f(it.lo) : `${f(Math.min(it.lo,it.hi))} to ${f(Math.max(it.lo,it.hi))}`;
+  return `- ${it.label}: ${val}. Source: ${SRC[it.src].label.toLowerCase()}${it.note ? ' (' + it.note + ')' : ''}. Treated as: ${CLSNAME[t]}.`;
+}
+function buildPrompt(req, exp, maxCap, sims){
+  const e = ENG[S.mode];
+  return `I'm testing a small business plan. Act as a skeptical advisor, not a cheerleader.
+
+For each number below I've said where it came from. FACT means it's on a quote, lease, or contract, or it's my own decision. EVIDENCE means my own records, my own research, or industry data I checked. GUESS means my estimate, or something from AI or the web I haven't checked.
+
+Business: ${S.name.replace(/[.]$/,'')}. ${S.blurb} Type: ${S.mode}.
+Cash on hand after opening: ${money(S.cash)}. The most I can afford to lose: ${money(S.afford)}.
+
+Monthly fixed costs:
+${S.fixed.map(fmtItem).join('\n')}
+
+How the business earns:
+${S.inputs.filter(i => !i.group).map(fmtItem).join('\n')}
+
+Limits on how much the business can serve:
+${S.inputs.filter(i => i.group).map(fmtItem).join('\n')}
+
+What my break-even tool shows: I need ${num(req[2])} to ${num(req[0])} ${e.unitLabel} to break even, and I expect ${num(exp[0])} to ${num(exp[1])}. The most the business can serve is about ${num(maxCap)}. In the middle case it is ${sims[1].beM ? 'profitable from month ' + sims[1].beM : 'not profitable within ' + MONTHS + ' months'}, and its lowest cash point is ${money(sims[1].low)}.
+
+Please:
+1. For each GUESS, suggest a cheap way to test it in the next 30 days.
+2. Tell me whether any GUESS could be backed by real data. Say what kind of source would have it, and say so if you are not sure.
+3. Point out constraints I may be missing or undervaluing: limits on space, staff, my own time, suppliers, cash timing, permits, or seasonality.
+4. Point out fixed costs or delays I may have missed for this kind of business.
+5. Do not replace my ranges with single-number forecasts. If you give a number, give a range and say what it is based on.`;
+}
+function copyPrompt(){
+  const ta = $('prompt'), done = () => { $('copied').textContent = 'Copied.'; setTimeout(() => $('copied').textContent = '', 2500); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, () => { ta.select(); try { document.execCommand('copy'); done(); } catch(_){} });
+  else { ta.select(); try { document.execCommand('copy'); done(); } catch(_){} }
+}
+$('yr').textContent = new Date().getFullYear();
+load('retail');
+</script></body></html>
