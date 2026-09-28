@@ -9,6 +9,8 @@ const TEXT = {
   lede: "Everything here started with a problem I saw across the table from a founder or in a classroom. AI did much of the building. Deciding what counts as right, and checking that it is, stayed with me.",
   mentoringIntro: "A product idea isn't a business. A business is the system that makes selling it repeatable, and most of what sinks a new one is a constraint nobody saw in time. These tools help founders see their system and find out what they don't yet know.",
   breakEven: "Most break-even tools ask founders to predict their sales. This one works out what has to be true for the business to cover its costs, and shows how much of that the founder actually knows. Three example businesses are built in: retail, service, and manufacturing.",
+  ctIntro: "Every new AI conversation starts from nothing. Connective Tissue is how I keep dozens of sessions across separate projects consistent over months when none of them remembers the others. Each area of work has one canonical document, an anchor, that any session can read and only one project can change.",
+  ctLink: "The mentoring toolkit's business file uses the same design at a smaller scale. Numbers are labeled guess, evidence, or fact the way proposals are labeled proposed, working, or settled. Sources are stored once and pointed to. History is kept, not overwritten. The architecture that keeps my own AI work coherent is the one the toolkit gives a founder for keeping a plan coherent.",
   toolkitNote: "The tools will share one business file saved on the owner's own computer. Nothing is sent anywhere.",
   econIntro: "Built for Introduction to Economics at Crafton Hills College, taught fully online, including dual-enrollment sections. The course platform strips out interactivity, so these are hosted separately and linked in. Students explore each graph as many times as they need, with nothing to submit.",
   biIntro: "Dashboards and reporting built for decisions, with clarity over volume.",
@@ -32,6 +34,23 @@ const PLANNED = [
   ["Customer discovery", "AI generates the candidates. Contact with real customers decides which survive."],
   ["Plan builder", "Assembles everything into a business plan draft, with every gap marked instead of filled."],
   ["Growth", "Where surplus should go: relieving the next constraint before it binds."],
+];
+
+const CT_STEPS = [
+  ["Read", "Every session starts by reading the current anchor for its area of work."],
+  ["Propose", "A session with something new files a supplement. It never edits the anchor."],
+  ["Reconcile", "The owning project gathers supplements and works through them with me. Nothing gets folded in silently."],
+  ["Replace", "The result is written as a full replacement, not a patch, so the anchor always reads as one coherent document."],
+  ["Apply", "A script swaps the replacement in and archives everything it consumed. No AI session touches this step."],
+];
+
+const CT_POINTS = [
+  ["One owner per area", "Every session can read any anchor. Only its owning project can change it."],
+  ["Proposals, not edits", "Contributions arrive as separate files, the way code arrives as a pull request."],
+  ["A person rules", "AI proposes. I decide what becomes settled."],
+  ["History kept", "Retired ideas and superseded versions are archived, so later sessions know what was tried and dropped."],
+  ["Pointers, not copies", "Each fact lives in one place. Everything else refers to it."],
+  ["Self-governing", "The protocol that runs the system has its own path for changing itself."],
 ];
 
 const ECON_TOOLS = [
@@ -77,6 +96,7 @@ export default function PortfolioPage() {
         </div>
         <nav aria-label="Sections">
           <a href="#mentoring">Mentoring toolkit</a>
+          <a href="#connective">Connective Tissue</a>
           <a href="#econ">Economics teaching tools</a>
           <a href="#bi">Business intelligence</a>
           <a href="#about">About and contact</a>
@@ -106,6 +126,24 @@ export default function PortfolioPage() {
         <h3 className="sub">In development</h3>
         <Planned items={PLANNED} />
         <p className="note">{TEXT.toolkitNote}</p>
+      </section>
+
+      <section id="connective">
+        <h2>Connective Tissue</h2>
+        <p className="intro">{TEXT.ctIntro}</p>
+        <p className="status">In daily use</p>
+        <ol className="flow" aria-label="How a change moves through the system">
+          {CT_STEPS.map(([title, desc], i) => (
+            <li key={title}>
+              <span className="n">{i + 1}</span>
+              <b>{title}</b>
+              <span>{desc}</span>
+            </li>
+          ))}
+        </ol>
+        <h3 className="sub">Design decisions</h3>
+        <Planned items={CT_POINTS} />
+        <p className="note">{TEXT.ctLink}</p>
       </section>
 
       <section id="econ">
