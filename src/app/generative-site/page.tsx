@@ -184,10 +184,34 @@ export default function GenerativeCoordinationPage() {
               counts. That story is
               at <a href="https://endogenator.com">endogenator.com</a>.
             </p>
+          </Section>
+
+          <Section title="The rest of the site">
             <p>
-              Everything else on this site (Topology, Belief Space, XIK-TS, ETCS,
-              Correctors and Recruiters) was built to explain the mechanism this
-              page names.
+              Four pages carry the
+              theory. <a href="/frameworks/topology">Topology</a> is the space
+              itself: Possibility Space, Belief Space, Transformation Space and
+              Aggregated Reality as nested domains, with permeability governing
+              what crosses between
+              them. <a href="/frameworks/belief-space">Belief Space</a> is
+              where reference frames live, and where most of human life is spent,
+              unenacted and
+              untested. <a href="/frameworks/belief-to-knowledge">Belief to Knowledge</a> is
+              what happens inside a single mind once something has crossed into
+              it. <a href="/frameworks/correctors-recruiters">Correctors and Recruiters</a> are
+              the two ways signals act on belief and identity, and the page
+              explains why they scale so differently.
+            </p>
+            <p>
+              The applications put the theory to work on a
+              case. <a href="/applications/education">Education as a System</a> reads
+              higher education through
+              it. <a href="/applications/agency-in-the-age-of-ai">Agency in the Age of AI</a> starts
+              with why I built the tools I use to work with AI.
+            </p>
+            <p>
+              The things I&apos;ve built are
+              at <a href="https://portfolio.endogenator.com">portfolio.endogenator.com</a>.
             </p>
           </Section>
 

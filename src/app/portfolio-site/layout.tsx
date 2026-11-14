@@ -16,9 +16,9 @@ const body = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Brian R. Davis: Work with AI",
+  title: "Work | Brian Davis",
   description:
-    "Mentoring tools, economics teaching tools, and analytics built with AI by Brian R. Davis.",
+    "Things Brian Davis has built with AI: a system that keeps AI work coherent across projects, and interactive tools for teaching economics.",
 };
 
 export const viewport: Viewport = {

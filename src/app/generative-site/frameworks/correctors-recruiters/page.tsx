@@ -53,136 +53,127 @@ export default function CorrectorsRecruitersPage() {
         </h1>
 
         <div className="space-y-14">
+          <Section title="Where the signal comes from">
+            <p>
+              Feedback is the primary mechanism. Feedback is a signal, and the two
+              are degrees of the same thing. What makes coordination possible is
+              that progress is visible to at least a few.
+            </p>
+            <p>
+              Correctors and recruiters are the two ways signals act on belief and
+              identity. They differ in where the signal comes from. In recruiting,
+              it comes from other people. In correcting, it comes back from the
+              world itself, as the result of acting on it.
+            </p>
+          </Section>
+
           <Section title="Recruiters">
             <p>
-              A recruiter widens permeability at scale. Not a relationship
-              formed one mind at a time, but access opening for many minds
-              at once to a given region of Belief Space. ETCS already
-              described institutions doing this as their basic function,
-              spreading a coordination target, a curriculum, a credential,
-              wide enough that large numbers of people become permeable to
-              it simultaneously. Nothing new to resolve here. Recruiting is
-              the mechanism already established, just named directly.
+              A recruiter widens permeability at scale. Permeability is how open a
+              person is to a given region of Belief Space,
+              and <a href="/frameworks/topology">Topology</a> has the full
+              account. A relationship opens a region one mind at a time. A
+              recruiter opens it for many minds at once.
+            </p>
+            <p>
+              The signal a recruiter carries comes from other people: a
+              curriculum, a credential, a shared target, spread widely enough that
+              large numbers of people become permeable to it together.
+              Institutions do this as their basic
+              function. <a href="/applications/education">Education as a System</a> follows that
+              through education.
             </p>
           </Section>
 
           <Section title="Correctors">
             <p>
-              A corrector is not a thing that gets transmitted. It
-              isn&apos;t belief or information pushed across a membrane,
-              that&apos;s the sender-pushes-a-packet model permeability
-              already replaced for belief in general. A corrector is an
-              event: genuine substrate contact of a kind the existing
-              reference frame can&apos;t absorb without being forced to
-              react.
+              A corrector is an event. No one transmits it. It is substrate
+              contact, meaning contact with the world itself, of a kind the
+              existing reference frame can&apos;t absorb without reacting. The
+              signal in a corrector event is the world&apos;s answer to something
+              a person did.
             </p>
             <p>
-              This is why more exposure, more repetition, more stirring,
-              never converts a mixture into a compound. It takes a
-              different kind of contact entirely, not more of the same
-              kind. Real testing, real experience, evidence that can&apos;t
-              be reinterpreted away, forces the reaction that produces
-              knowledge. Belief that only ever receives more of the same
-              confirming contact stays belief indefinitely, however long
-              it&apos;s held.
+              Belief is a mixture, held together by upkeep. Knowledge is a
+              compound: belief that has reacted, and holds without upkeep. More
+              exposure, more repetition and more stirring never turn a mixture
+              into a compound. The reaction takes a different kind of contact, and
+              more of the same kind won&apos;t produce it. Testing, experience,
+              and evidence that can&apos;t be reinterpreted away force the
+              reaction. Belief that only ever meets confirming contact stays
+              belief, however long it is held.
             </p>
           </Section>
 
-          <Section title="Why correcting doesn't scale the way recruiting does">
+          <Section title="Why correcting doesn't scale">
             <p>
-              Recruiting scales because it&apos;s fundamentally a diffusion
-              process, belief as gas filling whatever&apos;s permeable, and
-              permeability can be opened for enormous numbers of people at
-              once through a single institutional act, a curriculum, a
-              broadcast target, a credential requirement. Correcting
-              doesn&apos;t have that structure. Forcing genuine substrate
-              contact strong enough to produce a reaction is inherently a
-              per-mind event, the specific experience that breaks one
-              person&apos;s existing frame open doesn&apos;t necessarily do
-              the same for the next person, and can&apos;t be mass-produced
-              the way a target can be mass-broadcast.
+              Recruiting scales because it is diffusion. Belief behaves like a
+              gas, filling whatever is permeable, and a single institutional act
+              can open permeability for enormous numbers of people at once: a
+              curriculum, a broadcast target, a credential requirement.
             </p>
             <p>
-              This means institutions don&apos;t neglect correcting through
-              malice or oversight. Any institution optimizing for reach
-              naturally tilts toward the mechanism that actually scales.
-              The imbalance ETCS described, recruiting outpacing correcting
-              as institutions grow, isn&apos;t a design failure. It&apos;s
-              what happens by default when one half of the pair scales and
-              the other doesn&apos;t.
+              Correcting has no such structure. Substrate contact strong enough to
+              force a reaction happens one mind at a time. The experience that
+              breaks one person&apos;s frame open may do nothing for the next
+              person, and it can&apos;t be mass-produced the way a target can be
+              broadcast.
             </p>
             <p>
-              <strong>
-                Crisis is the exception, and it&apos;s the exception that
-                shows the mechanism rather than breaking it.
-              </strong>{" "}
-              A crisis forces genuine, undeniable substrate contact on
-              large numbers of people simultaneously, without needing an
-              institution to mediate it person by person. That&apos;s
-              still a corrector, still substrate contact strong enough to
-              force a reaction, it&apos;s just one of the rare conditions
-              under which correcting achieves the kind of scale recruiting
-              gets by default. Crisis doesn&apos;t scale correcting by
-              design. It scales correcting by brute force, substrate
-              imposing contact directly rather than needing to be
-              arranged.
+              So institutions don&apos;t neglect correcting out of malice or
+              oversight. Any institution that optimizes for reach tilts toward the
+              mechanism that scales. Recruiting outpaces correcting as
+              institutions grow, and that is the default when one half of the pair
+              scales and the other doesn&apos;t.
+            </p>
+            <p>
+              <strong>Crisis is the exception, and it shows the mechanism at work.</strong> A
+              crisis forces undeniable substrate contact on large numbers of
+              people at once, with no institution mediating it person by person.
+              It is still a corrector. It is one of the rare conditions under
+              which correcting reaches the scale recruiting gets by default.
+              Nobody designs that. The world imposes the contact directly.
             </p>
           </Section>
 
-          <Section title="What actually produces the permeability-crystallization correlation">
+          <Section title="Anchored to identity">
             <p>
-              XIK-TS left this open: permeability and crystallization show
-              up correlated, with no single located mechanism producing
-              either. There is one mechanism, not two separate pathways
-              converging on the same appearance.
+              Low permeability and crystallization tend to show up together.
+              Crystallization is identity becoming fixed in how it takes in new
+              experience. One mechanism produces both.
             </p>
             <p>
-              Mixtures, asymptotic beliefs, lack the substrate bond that
-              would let them stand independently. What sustains them
-              instead is identity anchoring, they get tied to a
-              person&apos;s sense of self, and once anchored, they&apos;re
-              protected by whatever function protects the rest of
-              identity. Knowledge, genuinely reacted, doesn&apos;t need
-              anchoring to persist, so it gives identity nothing to
-              defend, and stays comparatively permeable, open to being
-              extended without threat. Crystallization and low
-              permeability are what identity&apos;s general
-              self-protective function looks like when applied to
-              something that was never actually reacted, but has been
-              anchored to self anyway.
+              An asymptotic belief is a mixture that never reacts. It has no bond
+              to the world that would let it stand alone. What holds it up is
+              identity. It gets tied to a person&apos;s sense of self, and once
+              anchored it is protected by whatever protects the rest of identity.
+              Knowledge needs no anchoring to persist. It gives identity nothing
+              to defend, so it stays comparatively permeable and can be extended
+              without threat. Crystallization and low permeability are identity
+              protecting something that was anchored to the self without ever
+              having reacted.
             </p>
             <p>
-              The rigid expert case makes the mechanism concrete rather
-              than abstract. What crystallizes isn&apos;t usually the
-              technical knowledge itself, which may be genuinely reacted
-              and comparatively open to refinement. What&apos;s anchored
-              is the identity of being an expert, being the kind of person
-              who would already know if something were true. When
-              disconfirming contact arrives, it doesn&apos;t test that
-              identity the way a corrector is supposed to. Instead, the
-              anchored identity claim tests the contact,{" "}
-              <em>I would have known this if it were true</em>, and
-              whatever fails that test gets rejected or reinterpreted
-              rather than triggering revision. That&apos;s the correction
-              relationship inverted: substrate contact is supposed to test
-              belief, and here belief, specifically an identity anchored to
-              expertise, has become the standard that substrate contact is
-              measured against instead.
+              Take the rigid expert. The technical knowledge usually isn&apos;t
+              what crystallizes. It may have reacted, and stay open to refinement.
+              What is anchored is the identity of being an expert, the kind of
+              person who would already know if something were true. When
+              disconfirming contact arrives, it doesn&apos;t get to test that
+              identity. The identity tests the contact: I would have known this if
+              it were true. Whatever fails that test is rejected or reinterpreted.
+              This inverts correction. Contact with the world is supposed to test
+              belief. Here a belief about oneself has become the standard the
+              world is measured against.
             </p>
           </Section>
 
-          <Section title="Where this connects, without restating it here">
+          <Section title="Where this connects">
             <p>
-              Belief Space described what a reference frame built around
-              an error looks like, and why staying unenacted protects it.
-              This page names the event that would actually correct it,
-              and explains why that event is structurally rare compared to
-              how easily belief spreads. ETCS&apos;s recruiting-without-
-              correcting problem now has a real mechanism behind it, not
-              just an observation. Generative Coordination is what it
-              looks like when correctors and recruiters
-              operate together deliberately, correcting scaled up wherever
-              possible, recruiting never allowed to outrun it by default.
+              <a href="/frameworks/belief-space">Belief Space</a> describes
+              the kind of error a corrector would catch, and why staying unenacted
+              protects it. <a href="/">Generative Coordination</a> is
+              correctors and recruiters working together on purpose, with
+              recruiting never allowed to outrun correcting.
             </p>
           </Section>
         </div>

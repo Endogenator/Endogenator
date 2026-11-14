@@ -181,6 +181,10 @@ export default function RootSitePage() {
               the frameworks, the open questions, the parts that are settled and
               the parts still moving.
             </p>
+            <p>
+              The things I&apos;ve built along the way are
+              at <a href="https://portfolio.endogenator.com">portfolio.endogenator.com</a>.
+            </p>
           </Section>
 
           <Section title="Join the conversation">

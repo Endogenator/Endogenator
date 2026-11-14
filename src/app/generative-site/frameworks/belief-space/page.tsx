@@ -53,131 +53,114 @@ export default function BeliefSpacePage() {
         </h1>
 
         <div className="space-y-14">
-          <Section title="What this page actually covers">
+          <Section title="Where most of life happens">
             <p>
-              Belief Space is reference frames, the aggregate of them,
-              across every mind that has ever conceived one. Topology
-              already gave the definition, the human-perceived or
-              human-conceived subset of Possibility Space, entered by
-              conception alone, sharing not required. This page is about
-              what happens inside that domain specifically, what it means
-              to live there, what goes wrong when a reference frame is
-              built badly, and why so much of human life never leaves it.
+              Belief Space is the aggregate of reference frames across every mind
+              that has ever conceived one. It is the human-perceived or
+              human-conceived subset of Possibility Space, entered by conception
+              alone, with no sharing
+              required. <a href="/frameworks/topology">Topology</a> has the
+              definition. Most of human life is spent here, and much of what is
+              believed never leaves.
             </p>
           </Section>
 
           <Section title="When a reference frame is built around an error">
             <p>
-              A reference frame is a learned mapping of qualia to
-              substrate. That mapping can be accurate or it can be wrong
-              from the start, built around a false claim about what the
-              substrate actually is. When a reference frame carries that
-              error in its foundation, the belief built on it doesn&apos;t
-              become knowledge no matter how long it&apos;s held, because
-              the reaction that would convert belief into knowledge
-              requires genuine contact with substrate, and a reference
-              frame built around an error is exactly what distorts that
-              contact, testing and confirming the wrong mapping instead of
-              the real one. This is where asymptotic belief actually
-              originates, not belief that simply hasn&apos;t been tested
-              yet, but belief built on a frame that was wrong from the
-              beginning, and stays that way no matter how much apparent
-              confirmation it accumulates.
+              A reference frame is a learned mapping of qualia to substrate. The
+              mapping can be accurate, or it can be wrong from the start, built
+              around a false claim about what the substrate is. A belief built on
+              a frame like that doesn&apos;t become knowledge however long it is
+              held. The reaction that converts belief into knowledge requires
+              contact with substrate, and a frame built around an error distorts
+              that contact. It tests and confirms the wrong mapping.
+            </p>
+            <p>
+              This is where asymptotic belief originates. An untested belief is a
+              different thing. An asymptotic belief sits on a frame that was wrong
+              from the beginning, and stays wrong however much apparent
+              confirmation it gathers.
             </p>
           </Section>
 
-          <Section title="Most human life happens here, and that's why some errors persist">
+          <Section title="Why some errors persist">
             <p>
-              Most people spend more of their lives in Belief Space than in
-              any other domain. Conceiving, holding, discussing, comparing
-              reference frames, without those frames ever being enacted,
-              tested against actual substrate contact in Transformation
-              Space. That asymmetry matters, because TS-level contact is
-              what corrects a reference frame built around an error. A
-              belief that stays in BS, discussed, reinforced, never
-              enacted, never actually tested against the substrate it
-              claims to map, has no mechanism forcing it toward
-              correction.
+              Most people spend more of their lives in Belief Space than in any
+              other domain. They conceive, hold, discuss and compare reference
+              frames, and those frames are never enacted or tested against
+              substrate in Transformation Space. That matters, because contact at
+              the TS level is what corrects a frame built around an error. A
+              belief that stays in BS, discussed and reinforced and never enacted,
+              has nothing forcing it toward correction.
             </p>
             <p>
-              This is part of why a social problem like racism persists
-              long after it&apos;s been shown to rest on false premises. A
-              reference frame about a group of people, built around an
-              error, survives specifically where it isn&apos;t enacted,
-              where segregation, homogeneous social environments, or
-              simple lack of real contact mean the belief never meets the
-              substrate that would correct it. The error isn&apos;t
-              sustained by evidence. It&apos;s sustained by staying in
-              Belief Space, protected from the one kind of contact that
-              could force it to react.
+              This is part of why a social problem like racism persists long after
+              its premises have been shown false. A reference frame about a group
+              of people, built around an error, survives where it isn&apos;t
+              enacted. Segregation, homogeneous social environments, or a simple
+              lack of contact mean the belief never meets the substrate that would
+              correct it. Evidence doesn&apos;t sustain the error. Staying in
+              Belief Space does, by protecting it from the one kind of contact
+              that could force it to react.
             </p>
           </Section>
 
-          <Section title="The knowledge illusion starts and lives here">
+          <Section title="The illusion of explanatory depth">
             <p>
-              Sloman and Fernbach&apos;s illusion of explanatory depth, the
-              gap between how well people think they understand something
-              and how well they actually can explain its mechanism when
-              asked, is a Belief Space phenomenon specifically. It&apos;s
-              what happens when a reference frame is held with confidence
-              but has never been tested against the causal understanding
-              tier XIK-TS describes. The illusion survives because Belief
-              Space doesn&apos;t require explanation to hold something,
-              only conception. A belief can sit there, confidently held,
-              indefinitely, without ever being asked to show its
-              mechanism, because nothing about BS forces that question the
-              way actual enactment would.
+              Rozenblit and Keil named the illusion of explanatory depth: people
+              feel they understand how things work in far more depth than they do,
+              and the gap shows when they are asked to explain the mechanism. It
+              is a Belief Space phenomenon. A reference frame is held with
+              confidence and has never been tested against knowledge. The illusion
+              survives because Belief Space requires only conception to hold
+              something. A belief can sit there, confidently held, without ever
+              being asked to show its mechanism. Enactment would force that
+              question, and nothing in BS does.
             </p>
           </Section>
 
-          <Section title="Rhetoric works here, and it's a precursor, not the thing itself">
+          <Section title="Rhetoric">
             <p>
-              Belief Space is where rhetoric operates, persuasion,
-              argument, framing, moving belief around, opening or
-              exploiting permeability, entirely within the cognitive
-              domain, without requiring anything be enacted or tested.
-              Rhetoric can spread a belief, stabilize it, make it feel more
-              certain than it is. What it can&apos;t do on its own is
-              convert that belief into knowledge, since that conversion
-              requires the reaction, genuine substrate contact, that only
-              happens outside Belief Space. Rhetoric is the precursor to
-              knowledge creation in the sense that it can move a belief
-              into position, into wider circulation, closer to where it
-              might eventually be tested. It is not itself the mechanism
-              that tests it.
+              Belief Space is where rhetoric operates. Persuasion, argument and
+              framing move belief around and open or exploit permeability, all
+              within the cognitive domain, with nothing enacted or tested.
+              Rhetoric can spread a belief, stabilize it, and make it feel more
+              certain than it is. It cannot convert that belief into knowledge,
+              because the conversion requires substrate contact, which happens
+              outside Belief Space. Rhetoric is a precursor to knowledge. It can
+              move a belief into wider circulation, closer to where it might be
+              tested. It does not test it.
             </p>
           </Section>
 
           <Section title="The base human element">
             <p>
-              Belief Space is the base human element specifically because
-              it&apos;s the domain built from conception alone, the
-              uniquely human capacity to represent, hold, and aggregate
-              belief across minds, prior to and independent of whether any
-              of it gets enacted or verified. Possibility Space
-              doesn&apos;t require a human mind at all. Transformation
-              Space and Aggregated Reality require enactment. Belief Space
-              is the layer where being human, specifically, does its own
-              distinct work, conceiving, regardless of whether that
-              conceiving is ever tested.
+              Belief Space is the base human element because it is built from
+              conception alone: the human capacity to represent, hold and
+              aggregate belief across minds, before and apart from any of it being
+              enacted or tested. Possibility Space doesn&apos;t require a human
+              mind at all. Transformation Space and Aggregated Reality require
+              enactment. Belief Space is the layer where being human does its own
+              distinct work, which is conceiving.
             </p>
           </Section>
 
-          <Section title="Where this connects, without restating it here">
+          <Section title="Where this connects">
             <p>
-              Topology set Belief Space&apos;s place in the larger nested
-              structure. XIK-TS described what it takes for something to
-              cross from belief into knowledge inside a single mind. This
-              page is about what happens, and what fails to happen, while
-              something stays in Belief Space specifically, before that
-              crossing, or instead of it. ETCS shows what it looks like
-              when an institution recruits at the Belief Space level
-              without a strong enough correcting mechanism to force the
-              crossing. Correctors and Recruiters takes up what pulls a
-              reference frame out of Belief Space and into the kind of
-              contact that can correct it.
+              <a href="/frameworks/belief-to-knowledge">Belief to Knowledge</a> describes
+              what it takes for something to cross from belief into knowledge
+              inside a single
+              mind. <a href="/frameworks/correctors-recruiters">Correctors and Recruiters</a> takes
+              up what pulls a reference frame out of Belief Space and into contact
+              that can correct it.
             </p>
           </Section>
+
+          <p className="pt-4 text-xs text-[var(--site-ink-muted)]">
+            Rozenblit, L., &amp; Keil, F. (2002). The misunderstood limits of
+            folk science: an illusion of explanatory depth. Cognitive Science,
+            26(5), 521-562.
+          </p>
         </div>
       </div>
     </div>

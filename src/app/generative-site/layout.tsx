@@ -11,14 +11,16 @@ export const metadata: Metadata = {
     "Coordination that expands what we can collectively reach. A theory of why belief and action come apart.",
 };
 
-const FRAMEWORK_LINKS = [
+const THEORY_LINKS = [
   { href: "/frameworks/topology", label: "Topology" },
-  { href: "/frameworks/xik-ts", label: "XIK-TS" },
-  { href: "/frameworks/etcs", label: "ETCS" },
-  { href: "/frameworks/etcs/education-as-a-system", label: "Education as a System" },
   { href: "/frameworks/belief-space", label: "Belief Space" },
+  { href: "/frameworks/belief-to-knowledge", label: "Belief to Knowledge" },
   { href: "/frameworks/correctors-recruiters", label: "Correctors & Recruiters" },
-  { href: "/frameworks/integration", label: "Integration" },
+];
+
+const APPLICATION_LINKS = [
+  { href: "/applications/education", label: "Education" },
+  { href: "/applications/agency-in-the-age-of-ai", label: "Agency in the Age of AI" },
 ];
 
 export default function GenerativeSiteLayout({
@@ -39,15 +41,20 @@ export default function GenerativeSiteLayout({
           >
             Generative Coordination
           </a>
-          <nav className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-            {FRAMEWORK_LINKS.map((link) => (
+          <nav className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm">
+            {THEORY_LINKS.map((link) => (
               <a key={link.href} href={link.href}>
                 {link.label}
               </a>
             ))}
-            <a href="/applications/agency-in-the-age-of-ai">
-              Agency in the Age of AI
-            </a>
+            <span className="text-xs uppercase tracking-widest text-[var(--site-clay)]">
+              Applications
+            </span>
+            {APPLICATION_LINKS.map((link) => (
+              <a key={link.href} href={link.href}>
+                {link.label}
+              </a>
+            ))}
           </nav>
         </div>
       </header>
