@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "XIK-TS" };
 
 function Section({ title, status, children }: { title: string; status?: string; children: ReactNode }) {
   return (
@@ -152,8 +155,8 @@ export default function XikTsPage() {
               and introduces the actual threshold, belief to knowledge,
               that the rest of the framework has been gesturing at without
               naming directly. ETCS is this same process institutionalized
-              and run at scale. Correctors and Recruiters, whenever that
-              page is built, inherits the two open questions this page
+              and run at scale. Correctors and Recruiters inherits the
+              two open questions this page
               raises but doesn&apos;t answer: what moves belief into
               knowledge, and what produces the correlation between
               permeability and crystallization inside a system that has no

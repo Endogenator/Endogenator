@@ -3,9 +3,12 @@ import type { Metadata } from "next";
 import "./theme.css";
 
 export const metadata: Metadata = {
-  title: "Generative Coordination — Theory",
+  title: {
+    default: "Generative Coordination | Brian Davis",
+    template: "%s | Generative Coordination",
+  },
   description:
-    "The theoretical apparatus: topology, XIK-TS, ETCS, Belief Space, correctors and recruiters, and Generative Coordination itself.",
+    "Coordination that expands what we can collectively reach. A theory of why belief and action come apart.",
 };
 
 const FRAMEWORK_LINKS = [
@@ -54,9 +57,8 @@ export default function GenerativeSiteLayout({
       <footer className="border-t border-[var(--site-clay)]/30">
         <div className="mx-auto max-w-3xl px-6 py-8 text-sm text-[var(--site-ink-muted)]">
           <p>
-            A moving target on purpose. Some of this is settled, some of it
-            is actively still being worked out, marked as such throughout
-            rather than hidden. Part of the{" "}
+            A moving target on purpose. Some of this is settled and some
+            is still being worked out. Part of the{" "}
             <a href="https://endogenator.com">endogenator.com</a> project.
           </p>
           <p className="mt-2 text-xs">

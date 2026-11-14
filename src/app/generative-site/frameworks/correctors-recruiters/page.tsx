@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Correctors and Recruiters" };
 
 function Section({ title, status, children }: { title: string; status?: string; children: ReactNode }) {
   return (
@@ -111,7 +114,7 @@ export default function CorrectorsRecruitersPage() {
             <p>
               <strong>
                 Crisis is the exception, and it&apos;s the exception that
-                proves the mechanism rather than breaking it.
+                shows the mechanism rather than breaking it.
               </strong>{" "}
               A crisis forces genuine, undeniable substrate contact on
               large numbers of people simultaneously, without needing an
@@ -176,8 +179,8 @@ export default function CorrectorsRecruitersPage() {
               and explains why that event is structurally rare compared to
               how easily belief spreads. ETCS&apos;s recruiting-without-
               correcting problem now has a real mechanism behind it, not
-              just an observation. Generative Coordination, whenever fully
-              drafted, is what it looks like when correctors and recruiters
+              just an observation. Generative Coordination is what it
+              looks like when correctors and recruiters
               operate together deliberately, correcting scaled up wherever
               possible, recruiting never allowed to outrun it by default.
             </p>

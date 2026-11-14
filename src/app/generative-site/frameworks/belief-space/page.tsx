@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Belief Space" };
 
 function Section({ title, status, children }: { title: string; status?: string; children: ReactNode }) {
   return (
@@ -170,10 +173,9 @@ export default function BeliefSpacePage() {
               crossing, or instead of it. ETCS shows what it looks like
               when an institution recruits at the Belief Space level
               without a strong enough correcting mechanism to force the
-              crossing. Correctors and Recruiters, whenever that page is
-              built, needs to account for what actually pulls a reference
-              frame out of Belief Space and into the kind of contact that
-              can correct it.
+              crossing. Correctors and Recruiters takes up what pulls a
+              reference frame out of Belief Space and into the kind of
+              contact that can correct it.
             </p>
           </Section>
         </div>

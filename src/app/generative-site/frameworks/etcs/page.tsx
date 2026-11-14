@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "ETCS" };
 
 function Section({ title, status, children }: { title: string; status?: string; children: ReactNode }) {
   return (
@@ -96,7 +99,7 @@ export default function EtcsPage() {
               optimizing for the appearance of a coordination target being
               met rather than for whether it&apos;s actually being met.
               That case is worked through in full elsewhere, on the{" "}
-              <a href="https://doctorate.endogenator.com/education-as-a-system">
+              <a href="/frameworks/etcs/education-as-a-system">
                 Education as a System
               </a>{" "}
               page, rather than re-argued here.
@@ -105,7 +108,6 @@ export default function EtcsPage() {
 
           <Section
             title="Crystallization as a live hypothesis in institutional terms"
-            status="Status: this extends the crystallization mechanism from Topology in a direction that hasn't been proposed before. Stated as a hypothesis, not something to treat as settled."
           >
             <p>
               Topology reframes crystallization as permeability reduction,
@@ -152,9 +154,8 @@ export default function EtcsPage() {
               is what both look like once an institution takes over the
               recruiting half of that process at scale, usually without a
               correcting mechanism strong enough to match it. Correctors
-              and Recruiters, whenever that page is built, needs to account
-              for why the correcting side degrades as institutions grow,
-              not just define what a corrector is in the abstract.
+              and Recruiters takes up why the correcting side degrades as
+              institutions grow.
               Generative Coordination is what it looks like when an
               institution manages to do both at once, at scale, without
               the correcting side collapsing under its own success.

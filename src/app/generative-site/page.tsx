@@ -45,167 +45,165 @@ export default function GenerativeCoordinationPage() {
         </h1>
 
         <div className="space-y-14">
-          <Section title="Coordination is what we're built for">
+          <Section title="The claim">
             <p>
-              Humans are social animals. Coordination isn&apos;t one thing
-              we do among others. It&apos;s the point. Conceiving a goal
-              and working together toward it is what the species is built
-              for. Stonehenge, cities, language itself, all of it runs on
-              coordination first.
+              Generative Coordination is coordination that expands what we can
+              collectively reach. Most coordination does something else. It
+              reproduces a configuration that already exists, and defends it.
             </p>
             <p>
-              But coordination alone isn&apos;t the goal. To tackle the
-              hard problems, humans need something more. It needs to be
-              generative.
+              Coordination is what our species is built for. Stonehenge, cities
+              and language all run on people conceiving a goal and working toward
+              it together. The hard problems ask for more than that. They need
+              coordination that widens what we can see and reach.
             </p>
-          </Section>
-
-          <Section title="The definition">
             <p>
-              Generative Coordination is coordination that expands what&apos;s
-              collectively reachable, not coordination that reproduces an
-              existing configuration. That&apos;s the whole claim, and it
-              doubles as a test. Take any instance of people coordinating
-              around a belief, a target, an institution. Ask whether
-              it&apos;s moving the aggregate toward a point with real
-              density in Belief Space and Possibility Space that
-              hasn&apos;t been enacted yet, or whether it&apos;s defending
-              a position already held. The first is generative. The
-              second, however large or successful, is not.
+              The definition doubles as a test. Take any case of people
+              coordinating around a belief, a target or an institution, and ask
+              what it is doing. If it is bringing better outcomes into view and
+              into reach, it is generative. If it is defending a position already
+              held, it is not, however large or successful it has become.
             </p>
           </Section>
 
-          <Section title="Where this actually came from">
+          <Section title="Out of view">
             <p>
-              For most of my life I&apos;ve been bothered by the gap
-              between what people profess to believe and the actions they
-              actually take when it counts. At different points I found
-              myself thinking the only lever big enough to close that gap
-              was something like founding a religion. Nothing smaller
-              seemed big enough. That impulse wasn&apos;t wrong about the
-              size of the problem. It was aimed at the wrong tool.
+              There are two gaps between what is possible and what we live.
             </p>
             <p>
-              Generative Coordination is the answer that came instead. Not
-              a new institution to organize belief, but a theory of why
-              belief and action come apart, and what has to be true for
-              them to stay together. Everything else on this site,
-              Topology, Belief Space, XIK-TS, ETCS, Correctors and
-              Recruiters, was built to explain the mechanism this page
-              names directly. This isn&apos;t a fifth framework alongside
-              the others. It&apos;s what they were all in service of, even
-              though that wasn&apos;t obvious while each one was being
-              built.
+              The first is between what the world permits and what anyone has
+              conceived. There are better outcomes within reach that our current
+              belief space keeps out of view. Belief space is the sum of what
+              human minds have so far perceived or conceived, and no one can work
+              toward an outcome that isn&apos;t in it.
+            </p>
+            <p>
+              The second is between what has been conceived and what has been
+              enacted. An outcome can be thinkable for a long time before many
+              people are living it.
+            </p>
+            <p>
+              A better belief space is one in which we can see more of the
+              possibilities we would collectively want to pursue. Generative
+              Coordination works on both gaps.
+            </p>
+          </Section>
+
+          <Section title="What Stonehenge shows">
+            <p>
+              Stonehenge was built and altered over somewhere between 800 and
+              1,400 years, from the first earthwork enclosure through the final
+              Bronze Age additions to the stones (English Heritage, n.d.). Whoever
+              laid the first timber posts never saw the monument in anything like
+              its later form.
+            </p>
+            <p>
+              That is recruiting. Generations worked toward a target they would
+              never see finished and could not check against their own experience.
+              What moved them was a signal from other people.
+            </p>
+            <p>
+              What they could see was progress. Each generation had the work in
+              front of it: the enclosure, then the posts, then the stones. Visible
+              progress is feedback, and feedback is what makes coordination
+              possible.
+            </p>
+            <p>
+              The monument is also a picture of Aggregated Reality, the sum of
+              what everyone enacts. No one who worked on it perceived the whole.
+              Each saw it from a position inside it.
+            </p>
+            <p>
+              And it shows correcting. A stone stands or it falls. When the
+              builders got the engineering wrong, the answer came back from the
+              world itself. The engineering and the astronomy stayed tied to the
+              world that way. The cosmological claims that organized the labor
+              never faced the same test.
             </p>
           </Section>
 
           <Section title="The mechanism">
             <p>
-              Recruiting and correcting, working together, are the actual
-              mechanism. Recruiting widens permeability at scale, more
-              minds becoming open to a given region of Belief Space at
-              once. Correcting is genuine substrate contact strong enough
-              to force a reaction, converting belief into knowledge
-              instead of letting it persist as an unreacted mixture.
+              Feedback is the primary mechanism. Recruiting and correcting are the
+              two ways signals act on belief and identity.
             </p>
             <p>
-              Recruiting scales easily. Correcting doesn&apos;t, it&apos;s
-              structurally a per-mind event. That asymmetry is why the
-              default failure mode isn&apos;t rare, it&apos;s the norm:
-              institutions and movements recruit at enormous scale while
-              their correcting mechanism, whatever would catch a target
-              that&apos;s drifted from what it claims, quietly weakens the
-              larger and more self-sustaining they become. Generative
-              Coordination is the condition where that doesn&apos;t happen,
-              where correcting is kept deliberately strong enough to match
-              however far recruiting has spread.
+              In recruiting, the signal comes from other people. It widens what
+              many minds are open to at once. In correcting, the signal comes back
+              from the world itself, as the result of acting on it. Correcting is
+              what turns belief into knowledge.
+            </p>
+            <p>
+              Recruiting scales easily. Correcting happens one mind at a time.
+              That asymmetry makes the failure common. Institutions and movements
+              recruit at enormous scale, while whatever would catch a drifting
+              target weakens as they grow. Generative Coordination is the
+              condition where correcting is kept strong enough to match however
+              far recruiting has spread.
             </p>
           </Section>
 
-          <Section title="The clearest historical test case">
+          <Section title="The oldest failure">
             <p>
-              Religion is the sharpest available example. The scale it
-              operates at has no real peer in human history, coordination
-              sustained across generations who would never see the outcome
-              or verify the claim that organized their labor.
-              Stonehenge&apos;s construction and alteration ran somewhere
-              between 800 and 1,400 years, from the first earthwork
-              enclosure through the final Bronze Age additions to the
-              stones (English Heritage, n.d.). Whoever laid the first
-              timber posts never saw the monument in anything like its
-              later form. They held the target in Belief Space, conceived
-              and motivating, never checked against their own enacted
-              experience.
+              Religion is the sharpest example. Nothing else in human history has
+              coordinated people at that scale, across generations who would never
+              see the outcome or verify the claim that organized their labor.
             </p>
             <p>
-              Religion earns its reputation as both the great organizer
-              and the great corruptor because both are the same mechanism,
-              not two separate effects. What let belief spread and
-              stabilize across centuries of people who&apos;d never verify
-              it is exactly what let false substrate claims spread and
-              stabilize with equal durability. Recruiters don&apos;t
-              discriminate between a true target and a false one. Only
-              correctors do. Large-scale religious coordination
-              structurally suppresses correctors once it succeeds,
-              orthodoxy defending itself against exactly the kind of
-              contact that would test it.
+              Religion is known as both the great organizer and the great
+              corruptor, and both come from one mechanism. What let belief spread
+              and hold across centuries of people who would never verify it also
+              let false claims about the world spread and hold just as durably.
+              Recruiters don&apos;t discriminate between a true target and a false
+              one. Only correctors do. Once religious coordination succeeds at
+              scale it suppresses correctors, because orthodoxy defends itself
+              against the contact that would test it.
             </p>
             <p>
-              The precise failure isn&apos;t holding an unverifiable
-              belief. Honest belief that knows itself as belief, openly
-              inhabiting an unresolved question, is a legitimate way to
-              coordinate around something not yet settled. The failure is
-              claiming certainty a belief hasn&apos;t earned, to protect
-              the coordination that depends on people believing it&apos;s
-              certain. That belief holds on not because it&apos;s been
-              tested and passed, but because it&apos;s been anchored to
-              identity, and identity protects what it&apos;s anchored to.
+              Holding a belief no one can verify is not the failure. Belief that
+              knows itself as belief, and openly lives with an unresolved
+              question, is a legitimate way to coordinate around something not yet
+              settled. The failure is claiming certainty a belief hasn&apos;t
+              earned, to protect the coordination that depends on people believing
+              it&apos;s certain. That belief holds on because it has been anchored
+              to identity, and identity protects what it&apos;s anchored to.
             </p>
             <p>
-              The same coordination event can be generative in one domain
-              while failing in another, at the same time, inside the same
-              institution. Stonehenge and the pyramids required real
-              engineering and real astronomy, genuine advancement,
-              tethered to substrate. The cosmological claims that
-              organized the labor were never tested the same way. Whether
-              a coordination system counts as generative isn&apos;t a
-              single verdict on the whole institution. It has to be
-              assessed domain by domain. Correctors can be fully intact in
-              one region of what an institution does while completely
-              absent in another.
+              One institution can be generative in one domain and failing in
+              another at the same moment. Stonehenge and the pyramids took real
+              engineering and real astronomy, tied to the world. The cosmological
+              claims behind the labor were never tested that way. So whether
+              coordination is generative has to be asked domain by domain.
             </p>
           </Section>
 
-          <Section title="What it looks like when it's working">
+          <Section title="Where this came from">
             <p>
-              A Pareto-optimized form of society is a useful test case
-              because it&apos;s not yet real. It has genuine density in
-              Belief Space, it&apos;s been conceived, and genuine density
-              in Possibility Space, nothing in physics forbids it, while
-              having almost no density in Aggregated Reality, almost no
-              one is actually living it. That gap, conceivable and
-              constructible but unenacted, is exactly the shape Generative
-              Coordination is meant to close. Closing it well means
-              recruiting enough people toward that point that enactment
-              catches up, without losing the tethering that keeps the
-              target honest. Closing it badly means recruiting outrunning
-              correcting, the same failure that already has a long history
-              behind it.
+              I came to this through a gap that has bothered me most of my life,
+              between what people profess to believe and what they do when it
+              counts. That story is
+              at <a href="https://endogenator.com">endogenator.com</a>.
+            </p>
+            <p>
+              Everything else on this site (Topology, Belief Space, XIK-TS, ETCS,
+              Correctors and Recruiters) was built to explain the mechanism this
+              page names.
             </p>
           </Section>
 
-          <Section title="What's still genuinely open">
+          <Section title="What's still open">
             <p>
-              The formal distance metrics proposed in Topology,
-              transformation count and substrate count, remain unproven.
-              What specifically triggers a corrector event versus what
-              merely maintains belief as a mixture is described
-              mechanically, not exhaustively. AI&apos;s role in expanding
-              or narrowing what&apos;s collectively reachable is a live
-              question, worked out on its own terms, not folded into this
-              page prematurely. This is a moving target by design.
-              That&apos;s stated plainly, not as a caveat. It&apos;s the
-              reason to come back, not a reason to wait.
+              The distance measures proposed in Topology, transformation count and
+              substrate count, are proposals I haven&apos;t finished reasoning
+              through. What triggers a corrector event, and what only maintains a
+              belief, is described in outline and not in full. Whether AI expands
+              or narrows what we can collectively reach is an open question,
+              worked out separately.
+            </p>
+            <p>
+              The theory is a moving target by design, which is the reason to come
+              back. If you see where it breaks, tell
+              me: <a href="mailto:endogenator@gmail.com">endogenator@gmail.com</a>.
             </p>
           </Section>
 

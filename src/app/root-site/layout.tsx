@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import "./theme.css";
 
 export const metadata: Metadata = {
-  title: "endogenator.com — Origin Story",
+  title: "Endogenator | Brian Davis",
   description:
-    "The word, the diagnosis, and where the theoretical work lives.",
+    "Brian Davis on Generative Coordination: coordination that expands what we can collectively reach.",
 };
 
 export default function RootSiteLayout({ children }: { children: ReactNode }) {

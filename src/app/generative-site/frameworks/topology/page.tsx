@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Topology" };
 
 function Section({ title, status, children }: { title: string; status?: string; children: ReactNode }) {
   return (
@@ -127,24 +130,24 @@ export default function TopologyPage() {
               way they wouldn&apos;t be for a simple taxonomy.
             </p>
             <p>
-              A point can have real density in BS (it&apos;s been
-              conceived, it&apos;s thinkable) and real density in PS
-              (nothing in physics forbids it) while having close to zero
-              density in AR (almost no one is actually enacting it yet). A
-              Pareto-optimized form of society is exactly this kind of
-              point: conceivable, physically constructible, and almost
-              entirely unenacted. That&apos;s not a failure of imagination
-              or a failure of physics. It&apos;s a gap between where BS and
-              PS density already sit and where AR currently is, and because
-              this is a topology rather than a category system, that gap
-              has an actual shape, a direction, something coordination can
-              be pointed at.
+              There are two gaps here, at different scales or times. A point can
+              have real density in PS (nothing in physics forbids it) and close to
+              zero density in BS (almost no one has conceived it). Many of the
+              better outcomes within reach that our current belief space keeps out
+              of view are points of this kind. Once a point is conceived, it can
+              have real density in BS and still close to zero density in AR
+              (almost no one is enacting it). The first gap is between what PS
+              permits and what BS covers. The second is between what BS holds and
+              what AR shows. Because this is a topology, each gap has a shape and
+              a direction, and coordination can be pointed at it. A better belief
+              space is one in which we can see more of the possibilities we would
+              collectively want to pursue, including the ones the current one
+              obscures.
             </p>
           </Section>
 
           <Section
             title="Distance, and what's actually invariant"
-            status="Status: the general shape of this is settled. The formal proof isn't done yet."
           >
             <p>
               If this is a real topology, distance needs a real measure, or
@@ -186,7 +189,6 @@ export default function TopologyPage() {
 
           <Section
             title="Identity and permeability"
-            status="Status: this replaces an earlier draft of this section entirely. The first pass modeled identity as a transfer function with variable gain, catalyst in some regions, filter in others. That framing has been retired, not patched, in favor of the mechanism below, which has a real lineage behind it rather than a borrowed physics metaphor."
           >
             <p>
               Akerlof and Kranton&apos;s identity utility model scores how

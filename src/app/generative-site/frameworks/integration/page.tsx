@@ -1,4 +1,7 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = { title: "Integration" };
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
