@@ -68,6 +68,12 @@ export default function GenerativeSiteLayout({
             is still being worked out. Part of the{" "}
             <a href="https://endogenator.com">endogenator.com</a> project.
           </p>
+          <p className="mt-2">
+            Built work is
+            at <a href="https://portfolio.endogenator.com">portfolio.endogenator.com</a>.
+            Limits of Belief, my Substack, is
+            at <a href="https://endogenator.substack.com">endogenator.substack.com</a>.
+          </p>
           <p className="mt-2 text-xs">
             &copy; {year} Brian Davis. All rights reserved.
           </p>

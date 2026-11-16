@@ -185,6 +185,11 @@ export default function RootSitePage() {
               The things I&apos;ve built along the way are
               at <a href="https://portfolio.endogenator.com">portfolio.endogenator.com</a>.
             </p>
+            <p>
+              Limits of Belief, my Substack, is
+              at <a href="https://endogenator.substack.com">endogenator.substack.com</a>:
+              on belief, identity, and the edges of the possible.
+            </p>
           </Section>
 
           <Section title="Join the conversation">

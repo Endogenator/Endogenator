@@ -149,6 +149,7 @@ export default function PortfolioPage() {
           <div className="contact">
             <a href="mailto:endogenator@gmail.com">endogenator@gmail.com</a>
             <a href="https://www.linkedin.com/in/brianruthvendavis" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://endogenator.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>
           </div>
         </div>
       </section>

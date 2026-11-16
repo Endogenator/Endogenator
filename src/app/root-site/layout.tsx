@@ -23,6 +23,8 @@ export default function RootSiteLayout({ children }: { children: ReactNode }) {
           </span>
           <nav className="flex gap-5 text-sm">
             <a href="https://generative.endogenator.com">Generative</a>
+            <a href="https://portfolio.endogenator.com">Portfolio</a>
+            <a href="https://endogenator.substack.com">Substack</a>
           </nav>
         </div>
       </header>
